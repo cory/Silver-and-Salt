@@ -746,6 +746,108 @@
       </div>
     </div>
 
+    <!-- Mobile & Responsive -->
+    <div class="brand-card full">
+      <div class="bc-label">Mobile & Responsive Guidelines <span class="bc-locked">Locked · Apply to every page</span></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
+        <div>
+          <div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--sage);margin-bottom:8px">Breakpoints</div>
+          <div style="font-size:12px;line-height:1.8">
+            <div><strong>900px</strong> — Grid reflow (index.html multi-col grids)</div>
+            <div><strong>768px</strong> — Primary mobile: hamburger nav, single-column grids, tighter padding</div>
+            <div><strong>600px</strong> — Tab nav scroll + fade indicator (index.html)</div>
+            <div><strong>480px</strong> — Small phones: further typography + padding reduction</div>
+          </div>
+        </div>
+        <div>
+          <div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--sage);margin-bottom:8px">Spacing Scale</div>
+          <div style="font-size:12px;line-height:1.8">
+            <div><strong>Nav sides:</strong> 40–48px → 20px (768) → 16px (480)</div>
+            <div><strong>Section sides:</strong> 40–48px → 20–24px (768) → 16px (480)</div>
+            <div><strong>Hero top:</strong> 120px → 100px (768) → 80px (480)</div>
+            <div><strong>Min body text:</strong> 14px (never smaller on mobile)</div>
+          </div>
+        </div>
+      </div>
+      <div style="margin-bottom:16px">
+        <div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--sage);margin-bottom:8px">Mobile Navigation</div>
+        <div style="font-size:12px;line-height:1.8">
+          <div><strong>index.html:</strong> Two-tier nav stays visible. Tab rail scrolls horizontally at 600px with right-edge fade gradient. Wordmark scales: 28px → 22px (768) → 19px (480). Touch targets: 44px min-height.</div>
+          <div style="margin-top:6px"><strong>Standalone pages:</strong> Hamburger menu replaces nav links at 768px. Animated X toggle, solid cream dropdown with shadow, z-index:60. Contains "Back" link + "Apply" (or full nav links on manifesto/opportunity). Touch target: 44×44px.</div>
+        </div>
+      </div>
+      <ul class="rules-list">
+        <li class="critical"><span class="rule-num">1</span>Every page must have <code>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</code></li>
+        <li class="critical"><span class="rule-num">2</span>Every page must have <code>overflow-x: hidden</code> on html/body to contain decorative elements</li>
+        <li class="critical"><span class="rule-num">3</span>Every page needs at minimum 768px and 480px media queries</li>
+        <li class="critical"><span class="rule-num">4</span>No horizontal scroll at 375px width — verify after every content change</li>
+        <li><span class="rule-num">5</span>All interactive elements (links, buttons) must have 44×44px minimum touch targets</li>
+        <li><span class="rule-num">6</span>All multi-column grids collapse to <code>1fr</code> at 768px (stats may stay 2-col, collapse at 480px)</li>
+        <li><span class="rule-num">7</span>Standalone pages must include hamburger nav (hidden on desktop, visible at 768px)</li>
+        <li><span class="rule-num">8</span>Never use inline <code>style="padding:..."</code> without a class override in media queries</li>
+        <li><span class="rule-num">9</span>Tables must have <code>display:block; overflow-x:auto</code> on mobile</li>
+        <li><span class="rule-num">10</span>Typography uses <code>clamp()</code> for fluid scaling — hard cap at 34px (600px) and 28px (480px) for hero h1</li>
+      </ul>
+    </div>
+
+    <!-- Horizontal Logo Treatments -->
+    <div class="brand-card full">
+      <div class="bc-label">Horizontal Logo — Two Approved Treatments <span class="bc-locked">Locked · March 2026</span></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:10px">
+        <div style="background:var(--sand);border-radius:8px;padding:20px;border:1px solid rgba(47,62,52,0.08)">
+          <div style="font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--rust);margin-bottom:12px;font-weight:700">Primary — Navigation / Hero</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-weight:700;font-size:24px;color:var(--moss);margin-bottom:8px">Silver & Salt Capital</div>
+          <div style="font-size:11px;color:var(--sage);line-height:1.6">
+            <strong>Font:</strong> Cormorant Garamond, weight 700<br>
+            <strong>Size:</strong> 28px · <strong>Tracking:</strong> -0.01em<br>
+            <strong>Circle:</strong> 36px, ampersand weight 600, 19px<br>
+            <strong>Use:</strong> Nav bars, hero, anywhere competing with content
+          </div>
+        </div>
+        <div style="background:var(--sand);border-radius:8px;padding:20px;border:1px solid rgba(47,62,52,0.08)">
+          <div style="font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--rust);margin-bottom:12px;font-weight:700">Secondary — Footer / Stationery / Print</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:22px;color:var(--moss);margin-bottom:8px;letter-spacing:-0.02em">Silver & Salt Capital</div>
+          <div style="font-size:11px;color:var(--sage);line-height:1.6">
+            <strong>Font:</strong> Cormorant Garamond, weight 300<br>
+            <strong>Size:</strong> 22px · <strong>Tracking:</strong> -0.02em<br>
+            <strong>Circle:</strong> 40px, ampersand weight 300, 21px<br>
+            <strong>Use:</strong> Footers, letterheads, business cards, luxury contexts
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tagline -->
+    <div class="brand-card">
+      <div class="bc-label">Tagline <span class="bc-locked">Locked · March 2026</span></div>
+      <div style="font-family:'Cormorant Garamond',serif;font-weight:300;font-style:italic;font-size:18px;color:var(--sage);margin:12px 0 10px">Connecting capital to Utah founders who use it best.</div>
+      <div style="font-size:11px;color:var(--sage);line-height:1.6">
+        <strong>Font:</strong> Cormorant Garamond, weight 300, italic<br>
+        <strong>Color:</strong> Sage (#7E8E84)<br>
+        <strong>Rules:</strong> Always italic. Never all-caps. Period is part of the tagline.<br>
+        Appears below the wordmark in footer and stationery contexts.
+      </div>
+    </div>
+
+    <!-- Ampersand Watermark -->
+    <div class="brand-card">
+      <div class="bc-label">Ampersand Watermark — Design Component <span class="bc-locked">Locked · March 2026</span></div>
+      <div style="position:relative;background:var(--sand);border-radius:8px;padding:24px;overflow:hidden;margin:10px 0">
+        <div style="position:absolute;top:50%;right:-10px;transform:translateY(-50%);font-family:'Cormorant Garamond',serif;font-size:140px;font-weight:300;color:var(--moss);opacity:.04;line-height:1">&</div>
+        <div style="font-size:11px;color:var(--sage);line-height:1.8;position:relative;z-index:1">
+          <strong>Font:</strong> Cormorant Garamond, weight 300<br>
+          <strong>Opacity:</strong> 3–4% (barely visible, felt more than seen)<br>
+          <strong>Color:</strong> Moss on light backgrounds · White on dark backgrounds<br>
+          <strong>Size:</strong> 280–400px depending on container<br>
+          <strong>Position:</strong> Typically right-aligned, vertically centered. Can also be centered.<br>
+          <strong>Rule:</strong> Never at full opacity — always a whisper, not a shout.
+        </div>
+      </div>
+      <div style="font-size:11px;color:var(--sage);line-height:1.6;margin-top:8px">
+        <strong>Approved uses:</strong> Footer backgrounds, section dividers, presentation slides, print materials (letterhead, report covers), email headers. Must not interfere with text readability.
+      </div>
+    </div>
+
   </div>
 
   <!-- ══════════════════════════════════
