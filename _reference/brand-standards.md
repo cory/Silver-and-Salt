@@ -18,6 +18,17 @@ The Silver & Salt Capital logo consists of the **split-circle icon** paired with
 - **Split-circle:** 40px, Cormorant Garamond ampersand at weight 300, 21px
 - **Use when:** The logo appears in a quiet, grounded context — footers, letterheads, business cards, presentation closings, or anywhere luxury restraint is appropriate.
 
+### Compact / Partnership Mark
+- **Use when:** Co-branding strips, partner postcards, event materials, or any context requiring less horizontal space than the full wordmark.
+- **Layout:** S [split-circle badge] S on one row, italic "Capital" centered below
+- **S letters:** Cormorant Garamond, weight 700, 26px, color moss (#2F3E34)
+- **Split-circle badge:** 48px diameter, moss left / pop right, Cormorant Garamond ampersand at weight 600
+- **S-to-badge gap:** 4px (tight)
+- **"Capital" text:** Cormorant Garamond, weight 300, italic, 14px, color sage (#7E8E84)
+- **Capital vertical gap:** 2px (snug — reads as one unit with the mark row)
+- **On dark backgrounds:** S letters in #F0EDE7, badge left half rgba(240,237,231,0.12), "Capital" in rgba(240,237,231,0.45)
+- **Mockup reference:** `_reference/logo-compact-mockups.html`
+
 ### Split-Circle Icon
 - Half moss (#2F3E34), half pop/rust (#D16B4F)
 - White ampersand "&" centered, Cormorant Garamond serif
