@@ -98,6 +98,51 @@ The ampersand "&" is a signature design element that can be used as a large-scal
 | Labels / UI | Satoshi | 700 | Navigation, buttons, uppercase labels |
 | Body | Inter | 300-500 | Paragraph text |
 
+### Type Scale (CSS custom properties)
+
+| Token | Size | Usage |
+|-------|------|-------|
+| --text-2xs | 11px | Fine print, footnotes |
+| --text-xs | 12px | Source citations |
+| --text-sm | 13px | Labels, captions |
+| --text-base | 15px | Base UI text |
+| --text-md | 16px | Card descriptions |
+| --text-lg | 17px | Body paragraphs |
+| --text-xl | 18px | Large body text |
+| --text-2xl | 19px | Section intros |
+| --text-3xl | 20px | Subheadings |
+| --text-4xl | 22px | Large subheadings |
+
+Inline body text in `index.html` uses 17px as the standard paragraph size. Minimum readable text should be 15px. The type scale was increased +2px from original values in April 2026 to improve readability for older audiences.
+
+---
+
+## Copy Standards
+
+### Consistent CTA Language
+- All primary CTA buttons use **"Join Us"** — never "Apply Now" or other variants.
+
+### Key Terminology
+- **"exit (return your investment) faster"** — always parenthetically define "exit" for non-investor audiences.
+- **"Accredited investor"** — define on first use per SEC rules ($200K income / $1M net assets).
+- **Angel investing, syndicate, SPV, SAFE, IRR** — all defined in the Angel Investing 101 accordion on the How It Works page.
+
+### Utah Paradox Framing
+- Preferred phrasing: *"In the United States, Utah is ranked #3 to start a business. #50 for women's equality."*
+- Follow with: *"The gap between being a great place to start a business and being challenging for women's equality is exactly what makes the opportunity so exciting."*
+- Avoid: "That's not a contradiction" or dismissive framings of the inequality.
+
+### Thesis Page Section Order
+1. Hero — "Utah's high-performing founders are underfunded"
+2. The Utah Paradox — #3/#50 with stat cards
+3. Not new. Just new to Utah. — national landscape map + org examples
+4. The Science of Small Bets — portfolio math + convergence chart
+5. The Data — "Don't take our word for it" + performance stats
+6. Sources & methodology
+
+### Section Color Pattern (Thesis Page)
+Blue → Cream → Green → Cream → Blue — alternating for contrast.
+
 ---
 
 ## Footer Layout
@@ -113,4 +158,4 @@ The standard footer uses:
 
 ---
 
-*Last updated: March 2026*
+*Last updated: April 2026*
