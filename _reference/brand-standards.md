@@ -29,6 +29,11 @@ The Silver & Salt Capital logo consists of the **split-circle icon** paired with
 - **On dark backgrounds:** S letters in #F0EDE7, badge left half sage (#7E8E84), "Capital" in rgba(240,237,231,0.45). See "On Dark Backgrounds" section for approved treatments.
 - **Mockup reference:** `_reference/logo-compact-mockups.html`
 
+### Wordmark Rules
+- In horizontal logo treatments, **"Silver & Salt Capital" must always appear on a single line.** Never split or wrap the wordmark across multiple lines.
+- The wordmark and split-circle should always appear together in horizontal marks — never the wordmark alone.
+- **The ampersand (&) in the wordmark must always use `font-style: normal` (upright), never italic.** The Cormorant Garamond serif ampersand in its upright form is the brand character. An italic ampersand renders as a curly/script form that is not part of the brand identity. This applies everywhere the wordmark appears — nav, footer, brand assets, mockups, exports.
+
 ### Split-Circle Icon
 - Half moss (#2F3E34), half pop/rust (#D16B4F)
 - White ampersand "&" centered, Cormorant Garamond serif
