@@ -26,13 +26,31 @@ The Silver & Salt Capital logo consists of the **split-circle icon** paired with
 - **S-to-badge gap:** 4px (tight)
 - **"Capital" text:** Cormorant Garamond, weight 300, italic, 14px, color sage (#7E8E84)
 - **Capital vertical gap:** 2px (snug — reads as one unit with the mark row)
-- **On dark backgrounds:** S letters in #F0EDE7, badge left half rgba(240,237,231,0.12), "Capital" in rgba(240,237,231,0.45)
+- **On dark backgrounds:** S letters in #F0EDE7, badge left half sage (#7E8E84), "Capital" in rgba(240,237,231,0.45). See "On Dark Backgrounds" section for approved treatments.
 - **Mockup reference:** `_reference/logo-compact-mockups.html`
 
 ### Split-Circle Icon
 - Half moss (#2F3E34), half pop/rust (#D16B4F)
 - White ampersand "&" centered, Cormorant Garamond serif
 - Can be used standalone as a favicon or social avatar
+
+### On Dark Backgrounds
+
+On dark backgrounds (moss, ink blue, or any dark surface), the standard split-circle left half (moss #2F3E34) disappears. Three approved on-dark treatments exist:
+
+#### Approved On-Dark Treatments
+- **A. Standard (moss left / accent right)** — acceptable when the background provides enough contrast (e.g., ink blue #3D5A99). The left half may be subtle but reads as intentional.
+- **D. Outlined (cream outline left / filled accent right)** — the left half uses a cream (#F0EDE7) stroke outline instead of a filled half. Elegant and sophisticated. Use when the logo needs to feel refined on dark surfaces.
+- **E. Sage left / accent right** — the left half uses sage (#7E8E84) instead of moss. Stays in the green family but provides visible contrast on dark backgrounds. **This is the preferred treatment for the website.**
+
+For the **rust colorway**, "accent right" = #D16B4F.
+For the **plum colorway**, "accent right" = #8B5E83.
+
+#### Disallowed On-Dark Treatments
+The following treatments are **not permitted** and are not part of the brand:
+- Cream-filled (#F0EDE7) or white-filled left half — too much contrast, reads as a different logo
+- Full white wordmark — breaks the warmth of the brand
+- Rust-colored ampersand in the wordmark — the ampersand should always be muted/subdued, never accent-colored
 
 ---
 
