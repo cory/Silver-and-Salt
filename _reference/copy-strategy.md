@@ -49,7 +49,7 @@
 Women founders generate more revenue per dollar invested, burn less capital, and deliver stronger returns. This isn't advocacy — it's alpha.
 
 ### 2. The Market Gap
-Utah has 129,000+ women-owned businesses and ~25,000 accredited women investors. Almost none of that capital is reaching those founders. That's not a social problem — it's a market inefficiency.
+Utah has 129,000+ women-owned businesses and ~100,000 accredited women investors. Almost none of that capital is reaching those founders. That's not a social problem — it's a market inefficiency.
 
 ### 3. The Power of Coordinated Capital
 Alone, you're writing checks. Together, you're a force — better deal flow, shared diligence, collective leverage, lower risk per person.
@@ -127,7 +127,7 @@ Examples of the shift:
 
 | Current | Proposed Direction |
 |---|---|
-| "129,000 businesses need capital. 25,000 investors need deal flow. Nobody built the room." | "Utah's best-performing founders can't find capital. Utah's smartest investors can't find them." |
+| "129,000 businesses need capital. 100,000 investors need deal flow. Nobody built the room." | "Utah's best-performing founders can't find capital. Utah's smartest investors can't find them." |
 | "Two sides of one equation — still unconnected" | "129,000 women-owned businesses. $509M in startup capital. Almost none of it connecting." |
 | "Women founders outperform. The capital hasn't noticed." | "Women founders generate 78 cents per dollar invested. Men generate 31. The market hasn't caught up." |
 | "Simple. Powerful. Yours." | "How It Works" (let the content be powerful — the headline just needs to orient) |
