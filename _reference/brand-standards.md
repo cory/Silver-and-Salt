@@ -181,4 +181,39 @@ The standard footer uses:
 
 ---
 
+## Brand Asset Files
+
+All downloadable brand assets live in `assets/logos/brand-assets/`. These are high-resolution transparent PNGs rendered with the Cormorant Garamond font. The public download page is `brand-assets.html`.
+
+### Rust Colorway
+
+| File | Dimensions | Use |
+|------|-----------|-----|
+| `ssc-primary-logo.png` | 1126 × 205 | Navigation, hero, light backgrounds |
+| `ssc-primary-logo-light.png` | 1126 × 205 | Dark backgrounds (cream text, sage/rust circle) |
+| `ssc-secondary-logo.png` | 958 × 221 | Footer, stationery, print |
+| `ssc-icon.png` | 1024 × 1024 | Favicon, Gmail, social avatars |
+| `ssc-compact-mark.png` | 342 × 334 | Co-branding, partnerships, light backgrounds |
+| `ssc-compact-mark-dark.png` | 342 × 334 | Co-branding on dark backgrounds |
+
+### Plum Colorway
+
+| File | Dimensions | Use |
+|------|-----------|-----|
+| `ssc-primary-plum.png` | 1126 × 205 | Alternate colorway, light backgrounds |
+| `ssc-primary-plum-light.png` | 1126 × 205 | Alternate colorway, dark backgrounds |
+| `ssc-secondary-plum.png` | 958 × 221 | Alternate colorway, footer/print |
+| `ssc-icon-plum.png` | 1024 × 1024 | Alternate colorway, favicon/social |
+| `ssc-compact-plum.png` | 342 × 334 | Alternate colorway, co-branding |
+| `ssc-compact-plum-dark.png` | 342 × 334 | Alternate colorway, dark backgrounds |
+
+### Notes
+- All assets are transparent PNG with RGBA color
+- Icons are 1024×1024 for Retina sharpness at any display size
+- Horizontal logos are auto-cropped to content (no excess whitespace)
+- Font source files are in `assets/fonts/` (Cormorant Garamond)
+- Re-render script: `assets/logos/export-hires.html` (browser) or run `assets/logos/render-brand-assets.py` (Python/Pillow)
+
+---
+
 *Last updated: April 2026*
