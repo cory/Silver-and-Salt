@@ -1,5 +1,17 @@
 # Silver & Salt Capital — Brand Standards
 
+## Name & Ampersand — Non-Negotiable
+
+These rules must be followed everywhere the brand appears — copy, HTML, alt text, commit messages, documentation, LinkedIn templates, anything:
+
+1. **Always use the full name: "Silver & Salt Capital."** Never "Silver & Salt" alone (drops the firm's identity as a capital entity). Never "Silver and Salt Capital" (wrong character).
+2. **Always use the ampersand character `&`, never the word "and."**
+3. **In HTML on the website,** wrap the ampersand in `<span class="brand-amp">&amp;</span>` so it renders in Cormorant Garamond upright — never italic. The italic ampersand is a curly script glyph that is not part of the brand identity. See "Wordmark Rules" below for the full reasoning.
+
+Also codified in project-level `CLAUDE.md` so Claude Code sessions enforce these rules automatically.
+
+---
+
 ## Logo: Horizontal Mark
 
 The Silver & Salt Capital logo consists of the **split-circle icon** paired with the **wordmark**. Two approved treatments exist depending on context.
