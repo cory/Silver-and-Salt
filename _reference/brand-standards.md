@@ -1,14 +1,38 @@
 # Silver & Salt Capital — Brand Standards
 
-## Name & Ampersand — Non-Negotiable
+## Name & Ampersand (Non-Negotiable)
 
-These rules must be followed everywhere the brand appears — copy, HTML, alt text, commit messages, documentation, LinkedIn templates, anything:
+These rules must be followed everywhere the brand appears: copy, HTML, alt text, commit messages, documentation, LinkedIn templates, anything.
 
 1. **Always use the full name: "Silver & Salt Capital."** Never "Silver & Salt" alone (drops the firm's identity as a capital entity). Never "Silver and Salt Capital" (wrong character).
 2. **Always use the ampersand character `&`, never the word "and."**
-3. **In HTML on the website,** wrap the ampersand in `<span class="brand-amp">&amp;</span>` so it renders in Cormorant Garamond upright — never italic. The italic ampersand is a curly script glyph that is not part of the brand identity. See "Wordmark Rules" below for the full reasoning.
+3. **In HTML on the website,** wrap the ampersand in `<span class="brand-amp">&amp;</span>` so it renders in Cormorant Garamond upright, never italic. The italic ampersand is a curly script glyph that is not part of the brand identity. See "Wordmark Rules" below for the full reasoning.
 
-Also codified in project-level `CLAUDE.md` so Claude Code sessions enforce these rules automatically.
+---
+
+## Voice & Punctuation (Non-Negotiable)
+
+Our written voice is approachable and premium. Punctuation should feel calm and intentional, not breathless.
+
+1. **No em dashes (`—`) or en dashes (`–`) in body copy, headings, template text, metadata, or UI strings.** Use commas, periods, colons, parentheses, or semicolons instead.
+   - Bad: `Two standard placements — pick whichever fits your profile.`
+   - Good: `Two standard placements. Pick whichever fits your profile.`
+   - Good: `Two standard placements: pick whichever fits your profile.`
+2. **Hyphens in compound words are fine** (e.g., "women-led," "high-potential," "community-driven"). Hyphens are lexical; dashes are punctuation. The rule targets dashes only.
+3. **Prefer short, declarative sentences.** If a dash feels necessary, it usually signals a sentence that wants to be two sentences.
+4. **Reasoning:** Em/en dashes read as improvised or breathless; our voice is closer to Kinfolk than Bloomberg. Calm cadence, full stops, quiet confidence.
+
+### Define by what it IS, never by what it isn't
+
+5. **No "isn't X, it's Y" / "not X, but Y" constructions in product, brand, or marketing copy.** State the positive directly.
+   - Bad: `Posting isn't self-promotion. It's how people find us.`
+   - Good: `Posting is how the founders and investors in your network find Silver & Salt Capital.`
+   - Bad: `Silver & Salt Capital is not a fund.`
+   - Good: `Silver & Salt Capital is a collective of accredited women investors.`
+6. **Exception:** Personal-narrative negations are fine ("I didn't know it existed," "I'd never considered this before"). The rule targets how we describe the brand, product, or concepts, not how members describe their own story.
+7. **Reasoning:** Negation invites the reader to picture the thing you're denying. Stating what something IS keeps attention on the brand's actual identity, which is already strong enough to stand on its own.
+
+Codified in project-level `CLAUDE.md` so Claude Code sessions enforce these rules automatically.
 
 ---
 
