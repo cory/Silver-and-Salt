@@ -220,6 +220,39 @@ Blue → Cream → Green → Cream → Blue — alternating for contrast.
 
 ---
 
+## Header Layout
+
+The standard header sits at the top of every page and is identical in structure across the site. Per-page personality comes from the palette, not the layout.
+
+**Anatomy:**
+- **Top tier (`.nav-top`):** Split-circle icon + wordmark (Cormorant Garamond 700, 28px) on the left. "Join" button on the right.
+- **Rail tier (`.nav-rail`):** Four tabs, evenly spaced: **Start, Home, The Thesis, How It Works**. The active tab has a moss bottom border. Hover color = `var(--pop)`.
+- **Section tab:** None. Earlier versions of the site rendered a 5th non-clickable "About / Research / Press" tab on standalone pages. That tab is gone — every page shows the same 4 tabs. Section context is communicated by content and palette, not by the rail.
+
+**What varies per page:**
+- **Logo right-half** (`.sc-right`) — picks up `var(--pop)` (rust on most pages, teal on About pages, etc.).
+- **Join button background** — same `var(--pop)`.
+- The home page's Welcome tab gets a lime accent override in `index.html` via `body:has(#page-welcome.active) .nav-mark .sc-right`. Deliberate exception, intentionally scoped.
+
+### Single Source of Truth (`<site-header>` web component)
+
+The header markup lives in **one file**: [`assets/site-header.js`](../assets/site-header.js). Every page renders it via a `<site-header>` custom element. To update the header (logo, wordmark, Join button, tab labels), edit that one file. Every page picks up the change on next load. No build step.
+
+**Adopt this pattern on any new page.** Two lines, placed where the header should appear (typically the first thing inside `<body>`):
+
+```html
+<site-header></site-header>
+<script src="assets/site-header.js?v=1"></script>
+```
+
+**Do not paste inline `<nav>` markup into new pages.** Inline navs are how the section pages diverged from the home before this consolidation (extra "Join" link in the nav-apply, stale section tab, default browser link blue + underline on the wordmark anchor). The web component prevents that drift.
+
+**Inner home anchors** (Start, Home, Thesis, How) render as `href="index.html#xxx"` so middle-click and cmd-click work as expected. On the home page itself, the component intercepts plain left-clicks and routes through `showPage()` so the SPA-style tab switcher fires instead of a full reload, and syncs the active class to whichever inner page is currently showing.
+
+**The wordmark anchor needs `text-decoration: none`** in `styles.css` (`.nav-mark { text-decoration: none; color: inherit; }`). Without it, browsers apply default `:link` blue and underline. This used to silently afflict every standalone page.
+
+---
+
 ## Footer Layout
 
 The standard footer uses:
