@@ -226,12 +226,13 @@ The standard header sits at the top of every page and is identical in structure 
 
 **Anatomy:**
 - **Top tier (`.nav-top`):** Split-circle icon + wordmark (Cormorant Garamond 700, 28px) on the left. "Join" button on the right.
-- **Rail tier (`.nav-rail`):** Four tabs, evenly spaced: **Start, Home, The Thesis, How It Works**. The active tab has a moss bottom border. Hover color = `var(--pop)`.
-- **Section tab:** None. Earlier versions of the site rendered a 5th non-clickable "About / Research / Press" tab on standalone pages. That tab is gone — every page shows the same 4 tabs. Section context is communicated by content and palette, not by the rail.
+- **Rail tier (`.nav-rail`):** Four core tabs, always present: **Start, Home, The Thesis, How It Works**. The active tab has a moss bottom border. Hover color = `var(--pop)`.
+- **Section tab (5th tab):** On standalone pages, a 5th non-link tab appears showing the current section: **About**, **Research**, or **Press**. Hovering this tab opens a dropdown listing every page in that section (mirrors the corresponding footer column). The current page in the dropdown is highlighted in `var(--pop)`. The home page does **not** show a section tab — its 4-tab rail is canonical.
 
 **What varies per page:**
 - **Logo right-half** (`.sc-right`) — picks up `var(--pop)` (rust on most pages, teal on About pages, etc.).
 - **Join button background** — same `var(--pop)`.
+- **Section tab presence** — only on standalone pages, varying label by section.
 - The home page's Welcome tab gets a lime accent override in `index.html` via `body:has(#page-welcome.active) .nav-mark .sc-right`. Deliberate exception, intentionally scoped.
 
 ### Single Source of Truth (`<site-header>` web component)
@@ -248,6 +249,8 @@ The header markup lives in **one file**: [`assets/site-header.js`](../assets/sit
 **Do not paste inline `<nav>` markup into new pages.** Inline navs are how the section pages diverged from the home before this consolidation (extra "Join" link in the nav-apply, stale section tab, default browser link blue + underline on the wordmark anchor). The web component prevents that drift.
 
 **Inner home anchors** (Start, Home, Thesis, How) render as `href="index.html#xxx"` so middle-click and cmd-click work as expected. On the home page itself, the component intercepts plain left-clicks and routes through `showPage()` so the SPA-style tab switcher fires instead of a full reload, and syncs the active class to whichever inner page is currently showing.
+
+**Section pages and dropdown configuration:** Each section's pages live in the `SECTIONS` constant at the top of `assets/site-header.js`. Adding a new page to a section is a one-line edit there — the dropdown updates everywhere automatically. To onboard a new standalone page into the rail, give it `<site-header section="about|research|press">` and add an entry to the relevant `SECTIONS[...].pages` array. The dropdown also derives its "current page" highlight by matching `location.pathname` against each entry's `href`, so no per-page wiring is needed.
 
 **The wordmark anchor needs `text-decoration: none`** in `styles.css` (`.nav-mark { text-decoration: none; color: inherit; }`). Without it, browsers apply default `:link` blue and underline. This used to silently afflict every standalone page.
 
