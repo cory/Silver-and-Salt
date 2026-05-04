@@ -231,6 +231,25 @@ The standard footer uses:
 - **Background element:** Ampersand watermark, right-aligned, 280px, 4% opacity
 - **Padding:** 40px top/bottom, 40px sides — compact, not monumental
 
+### Single Source of Truth (`<site-footer>` web component)
+
+The footer markup lives in **one file**: [`assets/site-footer.js`](../assets/site-footer.js). Every page that uses the standard footer renders it via a `<site-footer>` custom element. To update the footer (links, copy, columns, copyright year, legal disclaimer), edit that one file. Every page picks up the change on next load. No build step.
+
+**Adopt this pattern on any new page** that needs the standard footer. Two lines, placed where the footer should appear (typically right before `</body>`):
+
+```html
+<site-footer></site-footer>
+<script src="assets/site-footer.js?v=1"></script>
+```
+
+**Do not paste inline `<footer>` markup into new pages.** Inline footers are how the site drifted out of sync in the first place (stale "Join" links, missing Research entries, "Founding Vision" instead of "Regenerative Capital"). The web component prevents that drift.
+
+**Footer logo color matches the page's header logo** automatically: both `.nav-mark .sc-right` and `.f-mark .sc-right` use `var(--pop)`, so each page's palette flows through to the footer. The home page's lime accent on the Welcome tab is a deliberate exception scoped via `body:has(#page-welcome.active) .f-mark .sc-right` in `index.html`.
+
+**Inner home anchors** (Start, Home, Thesis, How, Story, Community Commitments) render as `href="index.html#xxx"` for normal navigation. On the home page itself, the component intercepts clicks and routes through `showPage()` so the SPA-style tab switcher fires instead of a full reload.
+
+**Pages that intentionally do not use the standard footer:** `dashboard.html` (custom `dash-footer`) and `join.html` (no footer).
+
 ---
 
 ## Brand Asset Files
