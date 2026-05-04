@@ -153,9 +153,25 @@ The ampersand "&" is a signature design element that can be used as a large-scal
 | Display / Wordmark (bold) | Cormorant Garamond | 700 | Nav logo, hero headings |
 | Display / Wordmark (light) | Cormorant Garamond | 300 | Footer logo, elegant contexts |
 | Display / Italic | Cormorant Garamond | 300 italic | Tagline, pull quotes |
+| **Display digits 0-9** | **Cormorant Infant** | **300, 400, 600, 700** | **Replaces Cormorant Garamond for numerals only. See "Numeral Override" below.** |
 | Headings | Satoshi | 900 | Section titles, stats |
 | Labels / UI | Satoshi | 700 | Navigation, buttons, uppercase labels |
 | Body | Inter | 300-500 | Paragraph text |
+
+### Numeral Override (digits always render in Cormorant Infant)
+
+**Rule:** Digits 0-9 always render in Cormorant Infant, never in Cormorant Garamond.
+
+**Why:** Cormorant Garamond's "1" is an unflagged stem that misreads as capital I or lowercase l. In a brand built around showing numbers (deal counts, dollar amounts, percentages, dates) that ambiguity is unacceptable. Cormorant Infant is the same family with a small flag on the "1" that distinguishes it cleanly. We adopted Infant for digits only and kept Garamond for all letterforms because Garamond's editorial tone is a brand asset everywhere except in numerals.
+
+**How it's applied:** Automatic. No `<span class="num">` wrappers, no opt-in classes, no per-page work. The substitution lives at the top of `styles.css` as **section "0. NUMERAL OVERRIDE"** and uses CSS `unicode-range` to re-source the digit code points (`U+0030-0039`) of Cormorant Garamond from the Cormorant Infant latin subset on Google Fonts. The browser stitches the two fonts together at render time. Anywhere `font-family: 'Cormorant Garamond'` is set, digits silently render in Infant.
+
+**When this can break:**
+- If anyone removes or renames the override block in `styles.css` while keeping Cormorant Garamond loaded, digits will revert to the unflagged Garamond stem.
+- If Google Fonts changes the gstatic versioned URLs for Cormorant Infant (the URL contains a `/v22/` path segment that could become `/v23/`), the override will silently fail and digits will fall back to Garamond. Spot-check with [utah-funding-2025.html](../utah-funding-2025.html) on each font-loading change.
+- If a designer hardcodes a different serif (Fraunces, Newsreader, EB Garamond) without applying the same override pattern, the digit rule does not extend automatically.
+
+**Verification:** The 2025 snapshot ([utah-funding-2025.html](../utah-funding-2025.html)) is the canary. Its "169" headline is the most digit-prominent element on the site, and the difference between "169" with override (clearly flagged 1) and without (1 reads as lowercase l) is visible at a glance.
 
 ### Type Scale (CSS custom properties)
 
