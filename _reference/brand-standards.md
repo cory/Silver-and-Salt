@@ -41,11 +41,12 @@ Codified in project-level `CLAUDE.md` so Claude Code sessions enforce these rule
 The Silver & Salt Capital logo consists of the **split-circle icon** paired with the **wordmark**. Two approved treatments exist depending on context.
 
 ### Primary (Navigation / Hero)
-- **Font:** Cormorant Garamond, weight 700 (bold)
+- **Font:** Cormorant Garamond, weight 600 (semibold)
 - **Size:** 28px
 - **Letter-spacing:** -0.01em
 - **Split-circle:** 36px, Cormorant Garamond ampersand at weight 600, 19px
 - **Use when:** The logo needs to compete with other elements — navigation bars, page headers, overlaid on images, or anywhere requiring visual punch through busy backgrounds.
+- **History:** Originally 700 (bold). Briefly tested at 400 (too thin) before settling on 600 in May 2026 — heavier than the brand asset's editorial-light treatment but lighter than the original bold, so it holds presence in nav without overpowering the content below.
 
 ### Secondary (Footer / Stationery / Print)
 - **Font:** Cormorant Garamond, weight 300 (light)
@@ -225,7 +226,7 @@ Blue → Cream → Green → Cream → Blue — alternating for contrast.
 The standard header sits at the top of every page and is identical in structure across the site. Per-page personality comes from the palette, not the layout.
 
 **Anatomy:**
-- **Top tier (`.nav-top`):** Split-circle icon + wordmark (Cormorant Garamond 700, 28px) on the left. "Join" button on the right.
+- **Top tier (`.nav-top`):** Split-circle icon + wordmark (Cormorant Garamond 600, 28px) on the left. "Join" button on the right. Padding `18px 48px 12px` at desktop, with tablet (768px) and phone (480px) responsive overrides — all in `styles.css`, no per-page overrides.
 - **Rail tier (`.nav-rail`):** Four core tabs, always present: **Start, Home, The Thesis, How It Works**. The active tab has a moss bottom border. Hover color = `var(--pop)`.
 - **Section tab (5th tab):** On standalone pages, a 5th non-link tab appears showing the current section: **About**, **Research**, or **Press**. Hovering this tab opens a dropdown listing every page in that section (mirrors the corresponding footer column). The current page in the dropdown is highlighted in `var(--pop)`. The home page does **not** show a section tab — its 4-tab rail is canonical.
 
