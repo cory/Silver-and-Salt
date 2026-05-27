@@ -1694,7 +1694,7 @@ body { background: var(--cream); font-family: 'Satoshi', sans-serif; color: var(
     <div class="action-card">
       <div class="ac-label">Content &amp; Copy</div>
       <ul class="checklist">
-        <li><div class="cb"></div><div><span class="ci-text">Full naming audit — "Silver &amp; Salt Capital" or "S&amp;S Capital" everywhere</span></div></li>
+        <li><div class="cb done">✓</div><div><span class="ci-text">Full naming audit — "Silver &amp; Salt Capital" or "S&amp;S Capital" everywhere (audit complete 2026-05-26; see Brand Correctness Sweep below)</span></div></li>
         <li><div class="cb"></div><div><span class="ci-text">SEO: meta titles, descriptions, OG images per page</span></div></li>
         <li><div class="cb"></div><div><span class="ci-text">Build application form (Typeform or equivalent)</span></div></li>
         <li><div class="cb"></div><div><span class="ci-text">Write founding member benefits copy</span></div></li>
@@ -1708,6 +1708,17 @@ body { background: var(--cream); font-family: 'Satoshi', sans-serif; color: var(
         <li><div class="cb"></div><div><span class="ci-text">All internal links working</span></div></li>
         <li><div class="cb"></div><div><span class="ci-text">Source bible citations verified live on all pages</span></div></li>
       </ul>
+    </div>
+    <div class="action-card" style="grid-column: 1 / -1">
+      <div class="ac-label">Brand Correctness Sweep <span style="background:var(--teal);color:white;border-radius:3px;padding:2px 6px;font-size:9px;letter-spacing:0.1em;margin-left:8px;vertical-align:middle">Audit complete · 2026-05-26</span></div>
+      <ul class="checklist">
+        <li><div class="cb done">✓</div><div><span class="ci-text">Audit ran against all 13 customer-facing pages plus site-header.js / site-footer.js. Three tiers of findings catalogued.</span></div></li>
+        <li><div class="cb"></div><div><span class="ci-text"><strong>Tier 1 (31 fixes, find/replace level):</strong> 11 "Silver &amp; Salt" without "Capital" (networks.html, source-bible.html, index.html:2302) · 17 em dashes in &lt;title&gt; / og:title tags (9 pages) · 3 "Silver &amp; Salt Capital is not a fund" lines (index.html:2346, opportunity.html:315, faqs.html:842)</span></div></li>
+        <li><div class="cb"></div><div><span class="ci-text"><strong>Tier 2 (~10 fixes, judgment required):</strong> negation patterns like "That's not a contradiction," "This isn't a theory," "That's not charity" in index.html, faqs.html, utah-funding-research.html. Each needs context-aware rewording. Some may be canonical brand voice and should stay.</span></div></li>
+        <li><div class="cb"></div><div><span class="ci-text"><strong>Tier 3 (~295 instances, full editorial pass):</strong> em/en dashes in body copy across all 13 pages. Many are intentional bold-label patterns (saved exception); many are violations. Read each in context; rewrite using period, comma, colon, semicolon, or parens.</span></div></li>
+        <li><div class="cb"></div><div><span class="ci-text"><strong>Judgment call:</strong> index.html:1750 brand etymology line ("Silver and Salt are mineral resources in Utah...") uses intentional wordplay. Leave as-is, or reword to "The name Silver &amp; Salt Capital comes from two of Utah's mineral resources..."</span></div></li>
+      </ul>
+      <div style="margin-top:12px;padding-top:12px;border-top:1px solid rgba(47,62,52,0.08);font-size:11px;color:var(--sage);line-height:1.6">Reference: <a href="brand-book.html" target="_blank" style="color:var(--moss);text-decoration:underline">brand-book.html</a> is the canonical brand standard for resolving each violation. When picking up this work, decide which tier to tackle; Tier 1 is safe to sweep in one pass.</div>
     </div>
   </div>
 
