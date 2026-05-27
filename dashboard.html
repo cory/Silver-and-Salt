@@ -650,6 +650,10 @@ body { background: var(--cream); font-family: 'Satoshi', sans-serif; color: var(
   .dash-header-inner { flex-direction: column; gap: 12px; }
   .action-grid { grid-template-columns: 1fr; }
   .brand-grid { grid-template-columns: 1fr; }
+  .kanban-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+  .kanban-grid { grid-template-columns: 1fr; }
 }
 
 /* ══ BLUEPRINT SECTIONS ═══════════════════════════════════════════════════ */
@@ -776,6 +780,30 @@ body { background: var(--cream); font-family: 'Satoshi', sans-serif; color: var(
 .action-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 .action-card { background: white; border: 1px solid rgba(47,62,52,0.12); border-radius: 8px; padding: 20px; }
 .ac-label { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--sage); margin-bottom: 12px; }
+
+/* Kanban Priority Board */
+.kanban-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 24px; }
+.kanban-col { background: white; border: 1px solid rgba(47,62,52,0.12); border-radius: 8px; padding: 14px; display: flex; flex-direction: column; min-height: 200px; }
+.kanban-col.critical { border-top: 3px solid var(--rust); }
+.kanban-col.important { border-top: 3px solid #C4A47E; }
+.kanban-col.nice { border-top: 3px solid var(--sage); }
+.kanban-col.done { border-top: 3px solid var(--teal); background: #FAFAF7; }
+.kanban-col-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid rgba(47,62,52,0.08); }
+.kanban-col-title { font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: 16px; color: var(--moss); letter-spacing: -0.01em; }
+.kanban-col.critical .kanban-col-title { color: var(--rust); }
+.kanban-col-count { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; color: var(--sage); background: var(--sand); padding: 2px 7px; border-radius: 10px; }
+.kanban-col.critical .kanban-col-count { background: rgba(209,107,79,0.12); color: var(--rust); }
+.kanban-col.done .kanban-col-count { background: rgba(26,143,125,0.12); color: var(--teal); }
+.kanban-card { background: white; border: 1px solid rgba(47,62,52,0.10); border-radius: 5px; padding: 10px 12px; margin-bottom: 8px; font-size: 12px; line-height: 1.45; color: var(--moss); }
+.kanban-col.done .kanban-card { background: white; color: var(--sage); }
+.kanban-col.done .kanban-card .kc-title { text-decoration: line-through; color: var(--sage); }
+.kanban-card .kc-tag { display: inline-block; font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--sage); margin-bottom: 4px; }
+.kanban-card .kc-title { display: block; color: var(--moss); font-weight: 500; }
+.kanban-card.doing { border-left: 3px solid var(--rust); padding-left: 10px; }
+.kanban-card.doing .kc-tag::after { content: ' · DOING NOW'; color: var(--rust); }
+.kanban-card a { color: inherit; text-decoration: none; }
+.kanban-card a:hover { color: var(--rust); }
+.kanban-hint { font-size: 11px; color: var(--sage); margin-top: -12px; margin-bottom: 16px; line-height: 1.6; }
 
 /* Brand standards mini-ref */
 .brand-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
@@ -1379,6 +1407,18 @@ body { background: var(--cream); font-family: 'Satoshi', sans-serif; color: var(
       </div>
     </div>
 
+    <div class="brand-card full" style="background:var(--moss);color:var(--cream);border:none;position:relative;overflow:hidden">
+      <div style="position:absolute;right:-30px;top:50%;transform:translateY(-50%);font-family:'Cormorant Garamond',serif;font-style:normal;font-weight:300;font-size:200px;color:rgba(240,237,231,0.06);line-height:1;pointer-events:none">&amp;</div>
+      <div class="bc-label" style="color:rgba(240,237,231,0.55);position:relative">Brand Book <span class="bc-locked" style="background:var(--cream);color:var(--moss)">Single source of truth</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;position:relative">
+        <div style="max-width:520px">
+          <div style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:26px;line-height:1.2;margin-bottom:8px">The full brand book lives here.</div>
+          <div style="font-size:13px;line-height:1.6;color:rgba(240,237,231,0.75)">Everything a designer, writer, or partner needs to make work that looks and sounds like Silver <span class="brand-amp" style="font-family:'Cormorant Garamond',serif;font-style:normal">&amp;</span> Salt Capital. Logos, color, type, voice, copy standards. Share by URL or zip the file.</div>
+        </div>
+        <a href="brand-book.html" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;background:var(--cream);color:var(--moss);padding:12px 20px;border-radius:4px;font-family:'Satoshi',sans-serif;font-weight:700;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;text-decoration:none;flex-shrink:0">Open Brand Book <span style="font-family:'Cormorant Garamond',serif;font-style:normal;font-weight:400">→</span></a>
+      </div>
+    </div>
+
   </div><!-- /brand-grid -->
 
   <!-- ══ SITE PAGES TRACKER ════════════════════════════════════════════════ -->
@@ -1654,10 +1694,141 @@ body { background: var(--cream); font-family: 'Satoshi', sans-serif; color: var(
 
   </div><!-- /pages-grid -->
 
+  <!-- ══ PRIORITY BOARD (KANBAN) ══════════════════════════════════════════ -->
+  <div class="bp-section-header">
+    <h2>Priority Board</h2>
+    <span class="sh-sub">What's critical, what's next, what's done</span>
+  </div>
+  <p class="kanban-hint">First-pass priority assignments based on launch readiness. Move items by editing the file; checked items in the cards below auto-de-emphasize but don't move automatically.</p>
+
+  <div class="kanban-grid">
+
+    <!-- ── CRITICAL ─────────────────────────────────────────────── -->
+    <div class="kanban-col critical">
+      <div class="kanban-col-header">
+        <span class="kanban-col-title">Critical</span>
+        <span class="kanban-col-count">3</span>
+      </div>
+      <div class="kanban-card">
+        <span class="kc-tag">Platform</span>
+        <span class="kc-title">Custom domain email (tori@silverandsaltcapital.com) verified</span>
+      </div>
+      <div class="kanban-card">
+        <span class="kc-tag">Content</span>
+        <span class="kc-title">Build application form (Typeform or equivalent)</span>
+      </div>
+      <div class="kanban-card">
+        <span class="kc-tag">QA</span>
+        <span class="kc-title">Mobile responsive testing across all pages</span>
+      </div>
+    </div>
+
+    <!-- ── IMPORTANT ────────────────────────────────────────────── -->
+    <div class="kanban-col important">
+      <div class="kanban-col-header">
+        <span class="kanban-col-title">Important</span>
+        <span class="kanban-col-count">8</span>
+      </div>
+      <div class="kanban-card">
+        <span class="kc-tag">Brand</span>
+        <span class="kc-title">Commission final split-circle logo vector from designer</span>
+      </div>
+      <div class="kanban-card">
+        <span class="kc-tag">Brand</span>
+        <span class="kc-title">Integrate logo mark into nav on all pages</span>
+      </div>
+      <div class="kanban-card">
+        <span class="kc-tag">Brand</span>
+        <span class="kc-title">Create favicon using split-circle mark</span>
+      </div>
+      <div class="kanban-card">
+        <span class="kc-tag">Content</span>
+        <span class="kc-title">SEO: meta titles, descriptions, OG images per page</span>
+      </div>
+      <div class="kanban-card">
+        <span class="kc-tag">Content</span>
+        <span class="kc-title">Write founding member benefits copy</span>
+      </div>
+      <div class="kanban-card">
+        <span class="kc-tag">Brand correctness</span>
+        <span class="kc-title">Tier 1: 31 definitive brand violations (name truncations, title em dashes, "is not a fund")</span>
+      </div>
+      <div class="kanban-card">
+        <span class="kc-tag">QA</span>
+        <span class="kc-title">All internal links working</span>
+      </div>
+      <div class="kanban-card">
+        <span class="kc-tag">QA</span>
+        <span class="kc-title">Cross-browser testing (Chrome, Safari, Firefox)</span>
+      </div>
+    </div>
+
+    <!-- ── NICE TO HAVE ─────────────────────────────────────────── -->
+    <div class="kanban-col nice">
+      <div class="kanban-col-header">
+        <span class="kanban-col-title">Nice to Have</span>
+        <span class="kanban-col-count">5</span>
+      </div>
+      <div class="kanban-card">
+        <span class="kc-tag">Brand</span>
+        <span class="kc-title">Decide: palette switcher ships live or internal only?</span>
+      </div>
+      <div class="kanban-card">
+        <span class="kc-tag">Brand correctness</span>
+        <span class="kc-title">Tier 2: ~10 negation-pattern rewrites (judgment required)</span>
+      </div>
+      <div class="kanban-card">
+        <span class="kc-tag">Brand correctness</span>
+        <span class="kc-title">Tier 3: full editorial pass on ~295 em/en dashes</span>
+      </div>
+      <div class="kanban-card">
+        <span class="kc-tag">Brand correctness</span>
+        <span class="kc-title">Judgment call: rework homepage etymology line (index.html:1750)?</span>
+      </div>
+      <div class="kanban-card">
+        <span class="kc-tag">QA</span>
+        <span class="kc-title">Source bible citations verified live on all pages</span>
+      </div>
+    </div>
+
+    <!-- ── DONE ─────────────────────────────────────────────────── -->
+    <div class="kanban-col done">
+      <div class="kanban-col-header">
+        <span class="kanban-col-title">Done</span>
+        <span class="kanban-col-count">6</span>
+      </div>
+      <div class="kanban-card">
+        <span class="kc-tag">Platform</span>
+        <span class="kc-title">GitHub Pages live at silverandsaltcapital.com</span>
+      </div>
+      <div class="kanban-card">
+        <span class="kc-tag">Platform</span>
+        <span class="kc-title">Google Analytics 4 tracking on all pages</span>
+      </div>
+      <div class="kanban-card">
+        <span class="kc-tag">Platform</span>
+        <span class="kc-title">Repo cloned locally</span>
+      </div>
+      <div class="kanban-card">
+        <span class="kc-tag">Content</span>
+        <span class="kc-title">Full naming audit complete (2026-05-26)</span>
+      </div>
+      <div class="kanban-card">
+        <span class="kc-tag">Brand</span>
+        <span class="kc-title"><a href="brand-book.html" target="_blank">Brand book published</a></span>
+      </div>
+      <div class="kanban-card">
+        <span class="kc-tag">Brand correctness</span>
+        <span class="kc-title">Audit ran across 13 customer-facing pages</span>
+      </div>
+    </div>
+
+  </div><!-- /kanban-grid -->
+
   <!-- ══ PRE-LAUNCH ACTION ITEMS ══════════════════════════════════════════ -->
   <div class="bp-section-header">
     <h2>Pre-Launch Action Items</h2>
-    <span class="sh-sub">Global tasks across all pages</span>
+    <span class="sh-sub">Detail view, grouped by category</span>
   </div>
 
   <div class="action-grid">
@@ -1682,7 +1853,7 @@ body { background: var(--cream); font-family: 'Satoshi', sans-serif; color: var(
     <div class="action-card">
       <div class="ac-label">Content &amp; Copy</div>
       <ul class="checklist">
-        <li><div class="cb"></div><div><span class="ci-text">Full naming audit — "Silver &amp; Salt Capital" or "S&amp;S Capital" everywhere</span></div></li>
+        <li><div class="cb done">✓</div><div><span class="ci-text">Full naming audit — "Silver &amp; Salt Capital" or "S&amp;S Capital" everywhere (audit complete 2026-05-26; see Brand Correctness Sweep below)</span></div></li>
         <li><div class="cb"></div><div><span class="ci-text">SEO: meta titles, descriptions, OG images per page</span></div></li>
         <li><div class="cb"></div><div><span class="ci-text">Build application form (Typeform or equivalent)</span></div></li>
         <li><div class="cb"></div><div><span class="ci-text">Write founding member benefits copy</span></div></li>
@@ -1696,6 +1867,17 @@ body { background: var(--cream); font-family: 'Satoshi', sans-serif; color: var(
         <li><div class="cb"></div><div><span class="ci-text">All internal links working</span></div></li>
         <li><div class="cb"></div><div><span class="ci-text">Source bible citations verified live on all pages</span></div></li>
       </ul>
+    </div>
+    <div class="action-card" style="grid-column: 1 / -1">
+      <div class="ac-label">Brand Correctness Sweep <span style="background:var(--teal);color:white;border-radius:3px;padding:2px 6px;font-size:9px;letter-spacing:0.1em;margin-left:8px;vertical-align:middle">Audit complete · 2026-05-26</span></div>
+      <ul class="checklist">
+        <li><div class="cb done">✓</div><div><span class="ci-text">Audit ran against all 13 customer-facing pages plus site-header.js / site-footer.js. Three tiers of findings catalogued.</span></div></li>
+        <li><div class="cb"></div><div><span class="ci-text"><strong>Tier 1 (31 fixes, find/replace level):</strong> 11 "Silver &amp; Salt" without "Capital" (networks.html, source-bible.html, index.html:2302) · 17 em dashes in &lt;title&gt; / og:title tags (9 pages) · 3 "Silver &amp; Salt Capital is not a fund" lines (index.html:2346, opportunity.html:315, faqs.html:842)</span></div></li>
+        <li><div class="cb"></div><div><span class="ci-text"><strong>Tier 2 (~10 fixes, judgment required):</strong> negation patterns like "That's not a contradiction," "This isn't a theory," "That's not charity" in index.html, faqs.html, utah-funding-research.html. Each needs context-aware rewording. Some may be canonical brand voice and should stay.</span></div></li>
+        <li><div class="cb"></div><div><span class="ci-text"><strong>Tier 3 (~295 instances, full editorial pass):</strong> em/en dashes in body copy across all 13 pages. Many are intentional bold-label patterns (saved exception); many are violations. Read each in context; rewrite using period, comma, colon, semicolon, or parens.</span></div></li>
+        <li><div class="cb"></div><div><span class="ci-text"><strong>Judgment call:</strong> index.html:1750 brand etymology line ("Silver and Salt are mineral resources in Utah...") uses intentional wordplay. Leave as-is, or reword to "The name Silver &amp; Salt Capital comes from two of Utah's mineral resources..."</span></div></li>
+      </ul>
+      <div style="margin-top:12px;padding-top:12px;border-top:1px solid rgba(47,62,52,0.08);font-size:11px;color:var(--sage);line-height:1.6">Reference: <a href="brand-book.html" target="_blank" style="color:var(--moss);text-decoration:underline">brand-book.html</a> is the canonical brand standard for resolving each violation. When picking up this work, decide which tier to tackle; Tier 1 is safe to sweep in one pass.</div>
     </div>
   </div>
 
