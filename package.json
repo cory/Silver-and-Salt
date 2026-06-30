@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "python3 -m http.server ${PORT:-3000}",
     "static": "python3 -m http.server ${PORT:-3000}",
+    "vercel:build": "node scripts/vercel-build.mjs",
     "typecheck": "tsc --noEmit",
     "test": "npm run typecheck && npm run test:unit",
     "test:unit": "tsx --test test/*.test.ts",

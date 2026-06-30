@@ -3,6 +3,19 @@ import { apiHandler, sendJson } from "../server/http.js";
 import { databaseUrl, databaseUrlSummary, optionalEnv } from "../server/env.js";
 import { query } from "../server/db.js";
 
+const expectedTables = [
+  "accreditation_profiles",
+  "applications",
+  "audit_events",
+  "groups",
+  "health_checks",
+  "members",
+  "referral_codes",
+  "referral_credits",
+  "schema_migrations",
+  "stripe_events",
+];
+
 function errorCode(error: unknown): string | null {
   if (!error || typeof error !== "object") return null;
   const code = (error as { code?: unknown }).code;
@@ -36,21 +49,30 @@ function databaseErrorHint(error: unknown): { code: string; hint: string } {
 export default apiHandler("health", async (_req: VercelRequest, res: VercelResponse) => {
   let database: "ok" | "missing" | "error" = databaseUrl() ? "ok" : "missing";
   let databaseError: { code: string; hint: string } | null = null;
+  let schema: { status: "ok" | "missing" | "unknown"; missingTables: string[] } = { status: "unknown", missingTables: [] };
   if (database === "ok") {
     try {
       await query("SELECT 1 AS ok");
+      const tables = await query<{ table_name: string }>(
+        `SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_type = 'BASE TABLE'`,
+      );
+      const present = new Set(tables.rows.map((row) => row.table_name));
+      const missingTables = expectedTables.filter((table) => !present.has(table));
+      schema = { status: missingTables.length ? "missing" : "ok", missingTables };
     } catch (error) {
       database = "error";
       databaseError = databaseErrorHint(error);
     }
   }
   const supabaseApiOnly = database === "missing" && Boolean(optionalEnv("SUPABASE_URL"));
+  const ok = database !== "error" && schema.status !== "missing";
   sendJson(res, database === "error" ? 503 : 200, {
-    ok: database !== "error",
+    ok,
     service: "silver-salt-vercel",
     database,
     databaseError,
     databaseConnection: databaseUrlSummary(),
+    schema,
     databaseHint: supabaseApiOnly ? "SUPABASE_URL is configured, but a Postgres connection string is required as DATABASE_URL or POSTGRES_URL." : null,
     clerk: optionalEnv("CLERK_SECRET_KEY") ? "configured" : "missing",
     stripe: optionalEnv("STRIPE_SECRET_KEY") ? "configured" : "missing",
