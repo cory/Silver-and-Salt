@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Profile | Silver &amp; Salt Capital</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://api.fontshare.com">
+  <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=2026-06-29a">
+  <style>
+    body{background:var(--cream);color:var(--moss);font-family:Satoshi,Helvetica Neue,Arial,sans-serif;margin:0;min-height:100vh}.profile-hero{background:var(--moss);color:white;padding:138px 24px 54px;position:relative;overflow:hidden}.profile-hero::after{content:'&';position:absolute;right:5vw;bottom:-120px;font-family:'Cormorant Garamond',serif;font-size:320px;font-weight:300;color:rgba(255,255,255,.055);line-height:1}.profile-inner{max-width:980px;margin:0 auto;position:relative;z-index:1}.profile-eyebrow{font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#a9c49a;margin-bottom:18px}.profile-hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(42px,6vw,72px);font-weight:300;line-height:1.03;margin:0 0 14px}.profile-hero p{color:rgba(255,255,255,.74);font-size:18px;line-height:1.7;max-width:620px;margin:0}.profile-main{max-width:980px;margin:0 auto;padding:30px 22px 80px}.profile-grid{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:18px}.profile-panel{background:white;border:1px solid var(--border);border-radius:8px;padding:22px}.profile-panel h2{font-size:18px;line-height:1.25;margin:0 0 10px;color:var(--moss)}.profile-panel p{color:var(--text-muted);line-height:1.65;margin:0}.profile-status{background:white;border:1px solid var(--border);border-left:4px solid var(--lime);border-radius:0 8px 8px 0;padding:15px 17px;color:var(--moss-light);line-height:1.55;margin:0 0 20px}.profile-status.error{border-left-color:var(--rust)}.profile-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}.profile-btn{border:1px solid transparent;border-radius:8px;background:var(--moss);color:var(--cream);padding:11px 15px;font-weight:700;font-size:14px;line-height:1;text-decoration:none;cursor:pointer;min-height:38px}.profile-btn.secondary{background:white;color:var(--moss);border-color:var(--border)}.profile-btn.secondary:hover{border-color:var(--moss)}.profile-kv{display:grid;grid-template-columns:150px 1fr;gap:10px 16px;margin-top:16px;font-size:14px}.profile-kv dt{color:var(--sage);font-weight:700}.profile-kv dd{margin:0;color:var(--moss)}.hidden{display:none!important}@media(max-width:760px){.profile-hero{padding:122px 18px 44px}.profile-main{padding:24px 16px 60px}.profile-grid{grid-template-columns:1fr}.profile-kv{grid-template-columns:1fr;gap:4px}}
+  </style>
+</head>
+<body>
+  <site-header></site-header>
+  <script src="assets/site-header.js?v=2026-06-29g"></script>
+  <header class="profile-hero"><div class="profile-inner"><div class="profile-eyebrow">Account</div><h1>Profile.</h1><p>Manage your account access and move between member and admin workspaces.</p></div></header>
+  <main class="profile-main">
+    <div class="profile-status" id="profile-status">Checking your account.</div>
+    <section class="profile-panel hidden" id="profile-signin"><h2>Sign in required</h2><p>Use your Silver &amp; Salt Capital member or admin account to view this page.</p><div class="profile-actions"><button class="profile-btn" id="profile-signin-btn">Sign in with Clerk</button><a class="profile-btn secondary" href="/">Home</a></div></section>
+    <section class="profile-grid hidden" id="profile-content">
+      <div class="profile-panel"><h2>Account details</h2><p id="profile-summary">Signed in.</p><dl class="profile-kv"><dt>Email</dt><dd id="profile-email">Not available</dd><dt>Member access</dt><dd id="profile-member">Checking</dd><dt>Admin access</dt><dd id="profile-admin">Checking</dd></dl><div class="profile-actions"><a class="profile-btn" href="/members">Members</a><a class="profile-btn secondary hidden" href="/admin" id="profile-admin-link">Admin</a><button class="profile-btn secondary" id="profile-signout">Sign out</button></div></div>
+      <aside class="profile-panel"><h2>What unlocks access?</h2><p>Admin access comes from Clerk user private metadata. Member access comes from an approved member record created during application approval.</p></aside>
+    </section>
+  </main>
+  <script>
+    let profileClerk = null;
+
+    function readProfileSnapshot() {
+      return window.SilverSaltAuth?.readSnapshot?.() || null;
+    }
+
+    function afterInitialLoad() {
+      return new Promise(resolve => {
+        const done = () => setTimeout(resolve, 250);
+        if (document.readyState === 'complete') done();
+        else window.addEventListener('load', done, { once: true });
+      });
+    }
+
+    function writeProfileSnapshot(email, state) {
+      window.SilverSaltAuth?.writeSnapshot?.({
+        signedIn: true,
+        email,
+        admin: Boolean(state?.admin),
+        member: state?.member || { approved: false, status: null, approvedAt: null },
+        initials: (email || 'Member').split(/\s|@/).filter(Boolean).slice(0, 2).map(part => part[0]?.toUpperCase()).join('') || 'M',
+        imageUrl: profileClerk?.user?.imageUrl || '',
+      });
+    }
+
+    async function loadProfileClerk() {
+      const config = await window.SilverSaltAuth.loadPublicConfig();
+      if (!config.clerkPublishableKey) throw new Error('Clerk is not configured yet.');
+      return window.SilverSaltAuth.loadClerk(config);
+    }
+
+    async function profileAuthFetch(path) {
+      const token = await profileClerk.session.getToken();
+      return fetch(path, { headers: { authorization: 'Bearer ' + token, 'content-type': 'application/json' } });
+    }
+
+    function setProfileStatus(message, tone) {
+      const el = document.getElementById('profile-status');
+      el.textContent = message;
+      el.classList.toggle('error', tone === 'error');
+    }
+
+    function showSignin(clerk, message = 'Loading sign-in.') {
+      document.getElementById('profile-content').classList.add('hidden');
+      document.getElementById('profile-signin').classList.remove('hidden');
+      setProfileStatus(message);
+      const btn = document.getElementById('profile-signin-btn');
+      btn.disabled = !clerk;
+      btn.textContent = clerk ? 'Sign in with Clerk' : 'Loading sign-in...';
+      btn.onclick = clerk ? async () => {
+        try {
+          if (window.SilverSaltAuth?.openSignInModal) {
+            await window.SilverSaltAuth.openSignInModal({ redirectUrl: location.href });
+            return;
+          }
+          throw new Error('Clerk sign-in is not available.');
+        } catch (error) {
+          setProfileStatus(error?.message || 'Profile sign-in could not be opened.', 'error');
+        }
+      } : null;
+    }
+
+    function renderProfileState(state, email, statusText) {
+      document.getElementById('profile-signin').classList.add('hidden');
+      document.getElementById('profile-content').classList.remove('hidden');
+      document.getElementById('profile-email').textContent = email || state?.email || 'Not available';
+      document.getElementById('profile-member').textContent = state?.member?.approved ? 'Approved member' : 'Not approved yet';
+      document.getElementById('profile-admin').textContent = state?.admin ? 'Admin' : 'No admin access';
+      document.getElementById('profile-admin-link').classList.toggle('hidden', !state?.admin);
+      document.getElementById('profile-summary').textContent = state?.admin ? 'Admin access is active for this account.' : 'Your account is signed in.';
+      setProfileStatus(statusText);
+    }
+
+    async function main() {
+      const cached = readProfileSnapshot();
+      if (cached?.signedIn) renderProfileState(cached, cached.email, 'Refreshing profile.');
+      else showSignin(null, 'Checking your account.');
+
+      await afterInitialLoad();
+      profileClerk = await loadProfileClerk();
+      if (!profileClerk.user) {
+        showSignin(profileClerk, 'Sign in to view your profile.');
+        return;
+      }
+
+      const email = profileClerk.user.primaryEmailAddress?.emailAddress || cached?.email || 'Not available';
+      if (!cached?.signedIn) renderProfileState({ signedIn: true, member: { approved: false }, admin: false }, email, 'Loading profile.');
+      const res = await profileAuthFetch('/api/auth/me');
+      if (!res.ok) throw new Error('Your account could not be loaded.');
+      const state = await res.json();
+      writeProfileSnapshot(state.email || email, state);
+      renderProfileState(state, state.email || email, 'Profile loaded.');
+      document.getElementById('profile-signout').onclick = () => {
+        window.SilverSaltAuth?.clearSnapshot?.();
+        profileClerk.signOut(() => { window.location.href = '/'; });
+      };
+    }
+
+    main().catch(error => {
+      showSignin(profileClerk, error.message || 'Profile could not load.');
+      setProfileStatus(error.message || 'Profile could not load.', 'error');
+    });
+  </script>
+</body>
+</html>

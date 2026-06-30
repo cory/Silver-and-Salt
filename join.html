@@ -376,7 +376,7 @@
     }
 
     /* ── Step 2 ── */
-    #step-2 { display: none; }
+    #step-2, #step-3, #step-4 { display: none; }
 
     .step2-intro {
       text-align: center;
@@ -696,7 +696,64 @@
       .quote-name     { font-size: 13px; }
       .quote-title    { font-size: 11px; line-height: 1.7; }
     }
+
+    .payment-summary {
+      background: #fff;
+      border: 1px solid rgba(47,62,52,0.12);
+      border-radius: 8px;
+      padding: 22px;
+      margin-bottom: 22px;
+    }
+    .payment-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 8px 0;
+      color: var(--moss-light);
+      font-size: 15px;
+    }
+    .payment-row.total {
+      border-top: 1px solid rgba(47,62,52,0.14);
+      margin-top: 8px;
+      padding-top: 14px;
+      color: var(--moss);
+      font-weight: 700;
+    }
+    .payment-trust {
+      font-size: 13px;
+      line-height: 1.65;
+      color: var(--sage);
+      margin-top: 14px;
+    }
+    #express-checkout-element,
+    #payment-element {
+      margin-bottom: 18px;
+    }
+    .inline-error {
+      display: none;
+      color: #9a3d2c;
+      background: rgba(209,107,79,0.1);
+      border: 1px solid rgba(209,107,79,0.25);
+      border-radius: 8px;
+      padding: 12px 14px;
+      margin: 12px 0;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    .inline-error.show { display: block; }
+    .policy-check {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin: 16px 0 20px;
+      color: var(--moss-light);
+      font-size: 14px;
+      line-height: 1.55;
+    }
+    .policy-check input { margin-top: 4px; }
+
   </style>
+  <script src="https://js.stripe.com/v3/"></script>
 </head>
 <body>
 
@@ -723,7 +780,12 @@
       <div style="width: 20px;"></div>
       <div class="step pending" id="dot-2">
         <div class="step-dot">2</div>
-        <div class="step-label">Your introduction</div>
+        <div class="step-label">Secure your place</div>
+      </div>
+      <div style="width: 20px;"></div>
+      <div class="step pending" id="dot-3">
+        <div class="step-dot">3</div>
+        <div class="step-label">Book your conversation</div>
       </div>
     </div>
 
@@ -732,8 +794,7 @@
       <div class="card">
         <div class="card-label">Before we meet</div>
 
-        <!-- Replace APPS_SCRIPT_URL with your deployed Google Apps Script Web App URL -->
-        <form id="inquiry-form" action="https://script.google.com/macros/s/AKfycbxX7GKDKryz1yKrVlP84F315qB5OHedtnawJH3woRJ19vSoIl6YtTrGQwCw7D_7EdHoJQ/exec" method="POST">
+        <form id="inquiry-form" data-signup-api="/api/signup/start" method="POST">
           <input type="hidden" name="_subject" value="New Membership Inquiry: Silver & Salt Capital" />
 
           <div class="two-col">
@@ -750,6 +811,17 @@
           <div class="form-group">
             <label for="email">Email</label>
             <input type="email" id="email" name="email" placeholder="martha@example.com" required />
+          </div>
+
+          <div class="two-col">
+            <div class="form-group">
+              <label for="phone">Phone</label>
+              <input type="tel" id="phone" name="phone" placeholder="801-555-1212" required />
+            </div>
+            <div class="form-group">
+              <label for="state">State</label>
+              <input type="text" id="state" name="state" placeholder="UT" maxlength="2" required />
+            </div>
           </div>
 
           <div class="form-group">
@@ -806,14 +878,43 @@
             <textarea id="message" name="message" placeholder="What brought you here, and what are you hoping to find?" required></textarea>
           </div>
 
-          <button type="submit" class="submit-btn" id="submit-btn" disabled>Submit</button>
+          <label class="policy-check">
+            <input type="checkbox" id="disclaimer_accepted" name="disclaimer_accepted" required />
+            <span>I understand Silver &amp; Salt Capital membership activity is separate from any investment decision. This application is for membership review and does not constitute an offer to sell or a solicitation to buy securities.</span>
+          </label>
+
+          <button type="submit" class="submit-btn" id="submit-btn" disabled>Continue to payment</button>
           <p class="privacy">Your privacy matters to us. Your information is never sold or shared with third parties.</p>
         </form>
       </div>
     </div>
 
-    <!-- STEP 2: Calendar -->
+
+    <!-- STEP 2: Payment -->
     <div id="step-2">
+      <div class="card">
+        <div class="card-label">Secure your place</div>
+        <h2>Founding-member payment.</h2>
+        <div class="payment-summary">
+          <div class="payment-row"><span>Membership</span><strong>$1,000/year</strong></div>
+          <div class="payment-row"><span>Founding-member discount</span><strong>-$100</strong></div>
+          <div class="payment-row total"><span>Total due today</span><strong>$900</strong></div>
+          <p class="payment-trust">Your founding-member rate renews annually at $900 for as long as your membership remains continuously active. If, after our conversation, membership is not a mutual fit, your full $900 is refunded and the subscription is canceled.</p>
+        </div>
+        <div id="express-checkout-element"></div>
+        <div id="payment-element"></div>
+        <div class="inline-error" id="payment-error" aria-live="polite"></div>
+        <label class="policy-check">
+          <input type="checkbox" id="refund-policy-check" />
+          <span>I have read and understand the founding-member pricing and refund policy.</span>
+        </label>
+        <button class="submit-btn" id="pay-btn" disabled>Pay $900 and continue</button>
+        <p class="privacy">Card details are handled inside Stripe-hosted fields. Silver &amp; Salt Capital never sees or stores your card number.</p>
+      </div>
+    </div>
+
+    <!-- STEP 3: Calendar -->
+    <div id="step-3">
       <div class="step2-intro">
         <h2>Reserve your time.</h2>
         <p>This is a conversation to learn more about you and explore whether Silver &amp; Salt Capital is the right fit. Spots are limited and by invitation or direct inquiry only.<br><br>Come ready to share a bit about yourself and what you’re looking for in a membership.</p>
@@ -844,7 +945,7 @@
       </div>
     </div>
 
-    <div id="step-3">
+    <div id="step-4">
       <div class="step3-icon">✦</div>
       <h2 class="step3-heading">You’re confirmed.</h2>
       <p class="step3-body">Thank you for applying to Silver <span class="brand-amp">&amp;</span> Salt Capital.</p>
@@ -866,10 +967,34 @@
   </div>
 
   <script>
-    // Referral conditional field
-    const referralSelect  = document.getElementById('referral');
-    const referralReveal  = document.getElementById('referral-reveal');
-    const referralName    = document.getElementById('referral_name');
+    const referralSelect = document.getElementById('referral');
+    const referralReveal = document.getElementById('referral-reveal');
+    const referralName = document.getElementById('referral_name');
+    const form = document.getElementById('inquiry-form');
+    const submitBtn = document.getElementById('submit-btn');
+    const step1 = document.getElementById('step-1');
+    const step2 = document.getElementById('step-2');
+    const step3 = document.getElementById('step-3');
+    const step4 = document.getElementById('step-4');
+    const dot1 = document.getElementById('dot-1');
+    const dot2 = document.getElementById('dot-2');
+    const dot3 = document.getElementById('dot-3');
+    const payBtn = document.getElementById('pay-btn');
+    const paymentError = document.getElementById('payment-error');
+    const refundPolicyCheck = document.getElementById('refund-policy-check');
+    const confirmBtn = document.getElementById('confirm-btn');
+    const confirmCheck = document.getElementById('confirm-check');
+    const state = { applicationId: null, stripe: null, elements: null, mockPayment: false };
+
+    function setStep(dot, status) {
+      dot.className = 'step ' + status;
+      if (status === 'complete') dot.querySelector('.step-dot').innerHTML = '✓';
+    }
+
+    function showError(message) {
+      paymentError.textContent = message;
+      paymentError.classList.add('show');
+    }
 
     referralSelect.addEventListener('change', function() {
       if (this.value === 'referred') {
@@ -882,13 +1007,10 @@
       }
     });
 
-    // Enable submit button only when all required fields are filled
-    const form        = document.getElementById('inquiry-form');
-    const submitBtn   = document.getElementById('submit-btn');
-
     function checkFormReady() {
       const allRequired = form.querySelectorAll('[required]');
       const allFilled = [...allRequired].every(function(field) {
+        if (field.type === 'checkbox') return field.checked;
         return field.value.trim() !== '';
       });
       submitBtn.disabled = !allFilled;
@@ -897,83 +1019,137 @@
     form.addEventListener('input', checkFormReady);
     form.addEventListener('change', checkFormReady);
 
-    // Form submit → advance to step 2
-    const step1       = document.getElementById('step-1');
-    const step2       = document.getElementById('step-2');
-    const step3       = document.getElementById('step-3');
-    const confirmBtn  = document.getElementById('confirm-btn');
-    const dot1        = document.getElementById('dot-1');
-    const dot2        = document.getElementById('dot-2');
+    function formPayload() {
+      const formData = new FormData(form);
+      const checked = [...form.querySelectorAll('input[name="focus"]:checked')].map(cb => cb.value);
+      return {
+        groupId: 'silver-salt-capital',
+        firstName: formData.get('first_name'),
+        lastName: formData.get('last_name'),
+        email: formData.get('email'),
+        phone: formData.get('phone'),
+        state: formData.get('state'),
+        referral: formData.get('referral'),
+        referralName: formData.get('referral_name'),
+        whoYouAre: formData.get('who_you_are'),
+        interests: checked,
+        linkedin: formData.get('linkedin'),
+        message: formData.get('message'),
+        disclaimerAccepted: document.getElementById('disclaimer_accepted').checked,
+      };
+    }
 
-    // Checkbox gates the confirm button
-    const confirmCheck = document.getElementById('confirm-check');
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      submitBtn.textContent = 'Preparing payment…';
+      submitBtn.disabled = true;
+      try {
+        const res = await fetch('/api/signup/start', {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify(formPayload()),
+        });
+        const json = await res.json();
+        if (!res.ok) throw new Error(json.error?.message || 'Payment setup failed.');
+        state.applicationId = json.applicationId;
+        state.mockPayment = json.mockPayment === true;
+        if (state.mockPayment) {
+          state.elements = { mock: true };
+          document.getElementById('express-checkout-element').innerHTML = '';
+          document.getElementById('payment-element').innerHTML = '<div style="padding:18px;border:1px solid #d6e8d2;border-radius:8px;background:#f4faf2;color:#2F3E34;line-height:1.6"><strong>Local test mode.</strong><br>The application has been marked paid pending vetting without contacting Stripe.</div>';
+          payBtn.textContent = 'Continue to booking';
+        } else {
+          if (!json.stripePublishableKey || !window.Stripe) throw new Error('Stripe is not available yet.');
+          state.stripe = Stripe(json.stripePublishableKey);
+          state.elements = state.stripe.elements({
+            clientSecret: json.clientSecret,
+            appearance: {
+              theme: 'stripe',
+              variables: {
+                colorPrimary: '#7CB83F',
+                colorBackground: '#FBF8F2',
+                colorText: '#2F3E34',
+                colorDanger: '#D16B4F',
+                borderRadius: '8px',
+                fontFamily: 'Satoshi, Helvetica Neue, Arial, sans-serif'
+              }
+            }
+          });
+          try { state.elements.create('expressCheckout').mount('#express-checkout-element'); } catch (_) {}
+          state.elements.create('payment').mount('#payment-element');
+          payBtn.textContent = 'Pay $900 and continue';
+        }
+        step1.style.display = 'none';
+        step2.style.display = 'block';
+        setStep(dot1, 'complete');
+        setStep(dot2, 'active');
+        document.getElementById('hero-subtitle').textContent = 'Secure your founding-member place, then reserve your conversation.';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } catch (err) {
+        submitBtn.textContent = 'Continue to payment';
+        submitBtn.disabled = false;
+        alert(err.message || 'Something went wrong. Please try again or email tori@silverandsaltcapital.com directly.');
+      }
+    });
+
+    refundPolicyCheck.addEventListener('change', function() {
+      payBtn.disabled = !this.checked || !state.elements;
+    });
+
+    payBtn.addEventListener('click', async function() {
+      if ((!state.mockPayment && !state.stripe) || !state.elements || !refundPolicyCheck.checked) return;
+      payBtn.textContent = 'Confirming…';
+      payBtn.disabled = true;
+      paymentError.classList.remove('show');
+      if (!state.mockPayment) {
+        const result = await state.stripe.confirmPayment({
+          elements: state.elements,
+          redirect: 'if_required',
+          confirmParams: { return_url: window.location.href }
+        });
+        if (result.error) {
+          showError(result.error.message || 'Your payment could not be confirmed.');
+          payBtn.textContent = 'Pay $900 and continue';
+          payBtn.disabled = false;
+          return;
+        }
+      }
+      step2.style.display = 'none';
+      step3.style.display = 'block';
+      setStep(dot2, 'complete');
+      setStep(dot3, 'active');
+      document.getElementById('hero-subtitle').textContent = 'Please schedule your video call to complete your application.';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
     confirmCheck.addEventListener('change', function() {
       confirmBtn.disabled = !this.checked;
     });
 
-    // Confirm button → advance to step 3 (thank you screen)
-    confirmBtn.addEventListener('click', function() {
+    confirmBtn.addEventListener('click', async function() {
       if (!confirmCheck.checked) return;
-      step2.style.display = 'none';
-      step3.style.display = 'block';
-      dot2.className = 'step complete';
-      dot2.querySelector('.step-dot').innerHTML = '✓';
-      // Collapse hero to just the logo on Step 3
+      confirmBtn.textContent = 'Saving…';
+      confirmBtn.disabled = true;
+      try {
+        if (state.applicationId) {
+          await fetch('/api/signup/booking-confirmed', {
+            method: 'POST',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify({ applicationId: state.applicationId, refundPolicyAccepted: refundPolicyCheck.checked })
+          });
+        }
+      } catch (err) {
+        console.warn('Booking confirmation could not be recorded immediately.', err);
+      }
+      step3.style.display = 'none';
+      step4.style.display = 'block';
+      setStep(dot3, 'complete');
       document.getElementById('hero-title').style.display = 'none';
       document.getElementById('hero-rule').style.display = 'none';
       document.getElementById('hero-subtitle').style.display = 'none';
       document.getElementById('hero-tag').style.display = 'none';
       document.querySelector('.hero').style.padding = '28px 28px 24px';
       window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-
-    form.addEventListener('submit', async function(e) {
-      e.preventDefault();
-      submitBtn.textContent = 'One moment…';
-      submitBtn.disabled = true;
-
-      try {
-        // Collect form data, joining multi-select checkboxes into a comma-separated string
-        const formData = new FormData(form);
-        const checked  = [...form.querySelectorAll('input[name="focus"]:checked')].map(cb => cb.value);
-        formData.delete('focus');
-        formData.set('focus', checked.join(', '));
-
-        // Send as application/x-www-form-urlencoded — the format Apps Script
-        // reliably parses into e.parameter (FormData/multipart can arrive empty).
-        const params = new URLSearchParams();
-        for (const [key, value] of formData.entries()) params.append(key, value);
-
-        // A urlencoded POST is a "simple request": it always reaches Apps Script,
-        // even if the browser can't read the response — so the submission is never
-        // lost or duplicated. When the response IS readable we confirm the row was
-        // written; when it isn't (CORS), we degrade gracefully rather than alarm.
-        let confirmed = null; // true = server confirmed, false = server rejected, null = couldn't read
-        try {
-          const res  = await fetch(form.action, { method: 'POST', body: params, redirect: 'follow' });
-          const json = await res.json();
-          confirmed  = json.result === 'success';
-        } catch (readErr) {
-          if (!navigator.onLine) throw readErr; // genuine network failure — surface it
-          console.warn('Submission sent, but the response could not be read (likely CORS). Proceeding.', readErr);
-        }
-
-        if (confirmed === false) throw new Error('The server rejected the submission.');
-
-        // confirmed === true (verified) or null (delivered, unverifiable) — advance
-        step1.style.display = 'none';
-        step2.style.display = 'block';
-        dot1.className = 'step complete';
-        dot1.querySelector('.step-dot').innerHTML = '✓';
-        dot2.className = 'step active';
-        document.getElementById('hero-subtitle').textContent = 'Please schedule a video call to complete your application.';
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-
-      } catch(err) {
-        submitBtn.textContent = 'Submit';
-        submitBtn.disabled = false;
-        alert('Something went wrong. Please try again or email tori@silverandsaltcapital.com directly.');
-      }
     });
   </script>
 

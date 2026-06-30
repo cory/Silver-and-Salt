@@ -1,0 +1,65 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "/api?path=$1"
+    },
+    {
+      "source": "/members",
+      "destination": "/members.html"
+    },
+    {
+      "source": "/profile",
+      "destination": "/profile.html"
+    },
+    {
+      "source": "/admin",
+      "destination": "/admin.html"
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/investor/welcome",
+      "destination": "/members",
+      "permanent": false
+    },
+    {
+      "source": "/investor/welcome/",
+      "destination": "/members",
+      "permanent": false
+    },
+    {
+      "source": "/investor/welcome/linkedin",
+      "destination": "/members",
+      "permanent": false
+    },
+    {
+      "source": "/investor/welcome/linkedin/",
+      "destination": "/members",
+      "permanent": false
+    },
+    {
+      "source": "/investor/welcome/linkedin-post",
+      "destination": "/members",
+      "permanent": false
+    },
+    {
+      "source": "/investor/welcome/linkedin-post/",
+      "destination": "/members",
+      "permanent": false
+    }
+  ],
+  "crons": [
+    {
+      "path": "/api/cron/health",
+      "schedule": "0 16 * * *"
+    },
+    {
+      "path": "/api/cron/reconcile-stripe",
+      "schedule": "17 16 * * *"
+    }
+  ]
+}

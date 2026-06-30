@@ -9,3 +9,6 @@ _differentiation-project/
 sketch-fonts.html
 typography.html
 watch-style.html
+.vercel
+.env*
+!.env.example

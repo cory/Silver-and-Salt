@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Members | Silver &amp; Salt Capital</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://api.fontshare.com">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=2026-06-29a">
+  <style>
+    :root{--cream:#FBF8F2;--sand:#F4EFE6;--moss:#2F3E34;--moss-light:#4A5E50;--sage:#7E8E84;--lime:#7CB83F;--rust:#D16B4F;--border:#d6e8d2;--line:#e3ebdf;--ink:#223028;--muted:#68776d}
+    *{box-sizing:border-box}body{margin:0;background:var(--cream);color:var(--ink);font-family:Satoshi,Helvetica Neue,Arial,sans-serif;min-height:100vh}.brand-amp{font-family:'Cormorant Garamond',serif;font-style:normal}
+    .topbar{position:fixed;top:0;left:0;right:0;z-index:10;background:rgba(251,248,242,.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+    .topbar-inner{max-width:1040px;margin:0 auto;padding:14px 22px;display:flex;align-items:center;justify-content:space-between;gap:14px}.brand{font-family:'Cormorant Garamond',serif;font-size:25px;font-weight:600;color:var(--moss);text-decoration:none;white-space:nowrap}.brand .amp{color:var(--rust);font-size:.82em}.top-actions{display:flex;gap:8px;align-items:center}
+    .btn{border:1px solid transparent;border-radius:8px;background:var(--moss);color:var(--cream);padding:11px 15px;font-weight:700;font-size:14px;line-height:1;text-decoration:none;cursor:pointer;min-height:38px}.btn:hover{background:var(--moss-light)}.btn.secondary{background:white;color:var(--moss);border-color:var(--border)}.btn.secondary:hover{border-color:var(--moss);background:white}.btn:disabled{opacity:.55;cursor:not-allowed}
+    header{background:var(--moss);color:white;padding:124px 24px 54px;position:relative;overflow:hidden}header::after{content:'&';position:absolute;right:4vw;bottom:-115px;font-family:'Cormorant Garamond',serif;font-size:320px;font-weight:300;color:rgba(255,255,255,.055);line-height:1}.inner{max-width:1040px;margin:0 auto;position:relative;z-index:1}h1{font-family:'Cormorant Garamond',serif;font-size:clamp(42px,6vw,72px);font-weight:300;line-height:1.03;margin:0 0 16px;letter-spacing:0}header p{color:rgba(255,255,255,.74);font-size:18px;line-height:1.7;max-width:650px;margin:0}.eyebrow{font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#a9c49a;margin-bottom:18px}
+    main{max-width:1040px;margin:0 auto;padding:30px 22px 80px}.status{background:white;border:1px solid var(--border);border-left:4px solid var(--lime);border-radius:0 8px 8px 0;padding:15px 17px;color:var(--moss-light);line-height:1.55;margin:0 0 20px}.status.error{border-left-color:var(--rust)}.status.hidden{display:none!important}.layout{display:grid;grid-template-columns:minmax(0,1fr) 310px;gap:18px;align-items:start}.panel{background:white;border:1px solid var(--border);border-radius:8px;padding:22px}.panel h2{font-size:18px;margin:0 0 9px;color:var(--moss)}.panel p{line-height:1.65;color:var(--muted);margin:0}.auth-panel{max-width:520px;margin:0 auto}.auth-panel h2{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:400;margin-bottom:10px}.auth-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}.placeholder-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:18px}.placeholder-card{background:white;border:1px solid var(--border);border-radius:8px;padding:18px;min-height:150px}.placeholder-card h3{font-size:16px;color:var(--moss);margin:0 0 8px}.placeholder-card p{font-size:14px;color:var(--muted);line-height:1.6;margin:0}.badge{display:inline-flex;border-radius:999px;background:var(--sand);color:var(--moss);font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:5px 8px;margin-bottom:12px}.badge.green{background:#e8f4e0;color:#395f24}.member-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:18px}.task{background:white;border:1px solid var(--border);border-radius:8px;padding:18px;text-decoration:none;color:var(--moss);display:block;min-height:150px}.task h3{font-size:16px;margin:0 0 8px;color:var(--moss)}.task p{font-size:14px;line-height:1.6;color:var(--muted);margin:0}textarea{width:100%;min-height:118px;border:1px solid var(--border);border-radius:8px;padding:12px;font-family:inherit;font-size:14px;resize:vertical}label{display:block;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--sage);margin:18px 0 8px}.hidden{display:none!important}
+    @media(max-width:760px){.topbar-inner{padding:12px 16px}.brand{font-size:21px}.top-actions{gap:6px}.btn{font-size:13px;padding:10px 12px}header{padding:104px 18px 44px}.layout{grid-template-columns:1fr}.placeholder-grid{grid-template-columns:1fr}main{padding:24px 16px 60px}}
+  </style>
+</head>
+<body>
+  <site-header></site-header>
+  <script src="assets/site-header.js?v=2026-06-29g"></script>
+  <header>
+    <div class="inner">
+      <div class="eyebrow">Member Access</div>
+      <h1>Member home.</h1>
+      <p>Welcome materials, setup steps, and member resources for approved Silver <span class="brand-amp">&amp;</span> Salt Capital members.</p>
+    </div>
+  </header>
+  <main>
+    <div class="status hidden" id="status"></div>
+
+    <section class="auth-panel panel hidden" id="auth-view">
+      <h2>Member sign-in</h2>
+      <p>Sign in with the email connected to your approved membership. New applicants can continue through the public application flow.</p>
+      <div class="status error hidden" id="auth-error"></div>
+      <div class="auth-actions" id="auth-actions"></div>
+    </section>
+
+    <section id="workspace" class="hidden">
+      <div class="layout">
+        <div>
+          <div class="panel">
+            <span class="badge" id="workspace-badge">Placeholder</span>
+            <h2 id="workspace-title">Your member workspace is being prepared.</h2>
+            <p id="workspace-copy">Once your membership is approved, this page will hold onboarding materials, member resources, and the accreditation profile.</p>
+          </div>
+          <div class="placeholder-grid" id="placeholder-grid">
+            <div class="placeholder-card"><span class="badge">Soon</span><h3>Welcome materials</h3><p>The moved member welcome hub will live here behind Clerk access.</p></div>
+            <div class="placeholder-card"><span class="badge">Soon</span><h3>Member resources</h3><p>Reference materials, updates, and community links will be organized for repeat use.</p></div>
+            <div class="placeholder-card"><span class="badge">Soon</span><h3>Accreditation profile</h3><p>Investor qualification details stay separate from membership status and general community activity.</p></div>
+          </div>
+          <div class="member-grid hidden" id="tasks"></div>
+          <section id="accreditation" class="panel hidden" style="margin-top:18px">
+            <h2>Accreditation profile</h2>
+            <p>This information stays separate from membership activity and is available only to approved member/admin workflows.</p>
+            <label for="accreditation-notes">Notes for the team</label>
+            <textarea id="accreditation-notes" placeholder="Share any context you want the team to know."></textarea>
+            <button class="btn" id="save-accreditation" style="margin-top:12px">Save profile</button>
+          </section>
+        </div>
+        <aside class="panel">
+          <h2>Account</h2>
+          <p id="identity">Checking access.</p>
+          <div class="auth-actions"><button class="btn secondary hidden" id="sign-out">Sign out</button></div>
+        </aside>
+      </div>
+    </section>
+  </main>
+  <script>
+    let localTestEmail = null;
+    let activeClerk = null;
+    const defaultPlaceholderHtml = document.getElementById('placeholder-grid').innerHTML;
+
+    function readAuthSnapshot() {
+      return window.SilverSaltAuth?.readSnapshot?.() || null;
+    }
+
+    function afterInitialLoad() {
+      return new Promise(resolve => {
+        const done = () => setTimeout(resolve, 250);
+        if (document.readyState === 'complete') done();
+        else window.addEventListener('load', done, { once: true });
+      });
+    }
+
+    function writeAuthSnapshot(email, authState, clerk) {
+      window.SilverSaltAuth?.writeSnapshot?.({
+        signedIn: true,
+        email,
+        admin: Boolean(authState?.admin),
+        member: authState?.member || { approved: false, status: null, approvedAt: null },
+        initials: (email || 'Member').split(/\s|@/).filter(Boolean).slice(0, 2).map(part => part[0]?.toUpperCase()).join('') || 'M',
+        imageUrl: clerk?.user?.imageUrl || '',
+      });
+    }
+
+    function setStatus(message, tone) {
+      const status = document.getElementById('status');
+      if (!message) { status.classList.add('hidden'); return; }
+      status.textContent = message;
+      status.classList.toggle('error', tone === 'error');
+      status.classList.remove('hidden');
+    }
+
+    async function loadClerk() {
+      const config = await window.SilverSaltAuth.loadPublicConfig();
+      if (!config.clerkPublishableKey) {
+        if (config.localTestAuthEmail) {
+          localTestEmail = new URLSearchParams(location.search).get('testEmail') || config.localTestAuthEmail;
+          return { user: { primaryEmailAddress: { emailAddress: localTestEmail } }, session: { getToken: async () => '' }, signOut: (cb) => cb && cb() };
+        }
+        throw new Error('Member sign-in is not configured yet.');
+      }
+      return window.SilverSaltAuth.loadClerk(config);
+    }
+
+    async function authFetch(path, options) {
+      const headers = { 'content-type': 'application/json', ...((options || {}).headers || {}) };
+      if (localTestEmail) headers['x-test-user-email'] = localTestEmail;
+      else headers.authorization = 'Bearer ' + await window.Clerk.session.getToken();
+      return fetch(path, { ...(options || {}), headers });
+    }
+
+    function showAuth(clerk) {
+      activeClerk = clerk;
+      document.getElementById('workspace').classList.add('hidden');
+      document.getElementById('auth-view').classList.remove('hidden');
+      document.getElementById('auth-error').classList.add('hidden');
+      const actions = document.getElementById('auth-actions');
+      if (!clerk) {
+        actions.innerHTML = '<button class="btn" disabled>Loading sign-in...</button><a class="btn secondary" href="/join.html">Apply for membership</a>';
+        return;
+      }
+      actions.innerHTML = '<button class="btn" id="member-sign-in">Sign in with Clerk</button><a class="btn secondary" href="/join.html">Apply for membership</a>';
+      document.getElementById('member-sign-in').onclick = async () => {
+        const error = document.getElementById('auth-error');
+        error.classList.add('hidden');
+        try {
+          if (window.SilverSaltAuth?.openSignInModal) {
+            await window.SilverSaltAuth.openSignInModal({ redirectUrl: window.location.href });
+            return;
+          }
+          throw new Error('Clerk sign-in is not available.');
+        } catch (err) {
+          error.textContent = err?.message || 'Member sign-in could not be opened.';
+          error.classList.remove('hidden');
+        }
+      };
+    }
+
+    function showWorkspace(email) {
+      document.getElementById('auth-view').classList.add('hidden');
+      document.getElementById('workspace').classList.remove('hidden');
+      document.getElementById('identity').textContent = email || 'Signed in';
+      const signOut = document.getElementById('sign-out');
+      signOut.classList.toggle('hidden', Boolean(localTestEmail));
+      signOut.onclick = () => activeClerk?.signOut ? activeClerk.signOut(() => { window.location.href = '/'; }) : window.location.reload();
+    }
+
+    function renderCachedWorkspace(state) {
+      if (state?.admin && !state?.member?.approved) { renderAdminWorkspace(); setStatus('Refreshing account access.'); return; }
+      document.getElementById('workspace-badge').classList.toggle('green', Boolean(state?.member?.approved));
+      document.getElementById('workspace-badge').textContent = state?.member?.approved ? 'Active member' : 'Pending';
+      document.getElementById('workspace-title').textContent = state?.member?.approved ? 'Loading member resources.' : 'Your member workspace is being prepared.';
+      document.getElementById('workspace-copy').textContent = state?.member?.approved ? 'Your approved member status was found locally. Current resources are loading now.' : 'Once your membership is approved, this page will unlock onboarding materials, member resources, and next steps.';
+      document.getElementById('placeholder-grid').innerHTML = defaultPlaceholderHtml;
+      document.getElementById('placeholder-grid').classList.remove('hidden');
+      document.getElementById('tasks').classList.add('hidden');
+      document.getElementById('accreditation').classList.add('hidden');
+      setStatus('Refreshing account access.');
+    }
+
+    function renderPendingMember() {
+      document.getElementById('placeholder-grid').innerHTML = defaultPlaceholderHtml;
+      document.getElementById('workspace-badge').classList.remove('green');
+      document.getElementById('workspace-badge').textContent = 'Pending';
+      document.getElementById('workspace-title').textContent = 'Your member workspace is being prepared.';
+      document.getElementById('workspace-copy').textContent = 'Once your membership is approved, this page will unlock onboarding materials, member resources, and next steps.';
+      document.getElementById('placeholder-grid').classList.remove('hidden');
+      document.getElementById('tasks').classList.add('hidden');
+      document.getElementById('accreditation').classList.add('hidden');
+      setStatus('Signed in. Approved member access is not active for this account yet.');
+    }
+
+    async function readApiError(res, fallback) {
+      const body = await res.json().catch(() => ({}));
+      return body?.error?.message || fallback;
+    }
+
+    function renderAccessUnavailable(message) {
+      document.getElementById('placeholder-grid').innerHTML = defaultPlaceholderHtml;
+      document.getElementById('workspace-badge').classList.remove('green');
+      document.getElementById('workspace-badge').textContent = 'Unavailable';
+      document.getElementById('workspace-title').textContent = 'Member access could not be verified.';
+      document.getElementById('workspace-copy').textContent = 'The membership system is unavailable. Try again after the deployment configuration is corrected.';
+      document.getElementById('placeholder-grid').classList.remove('hidden');
+      document.getElementById('tasks').classList.add('hidden');
+      document.getElementById('accreditation').classList.add('hidden');
+      setStatus(message || 'Member access could not be verified.', 'error');
+    }
+
+    function renderAdminWorkspace() {
+      const badge = document.getElementById('workspace-badge');
+      badge.textContent = 'Admin';
+      badge.classList.add('green');
+      document.getElementById('workspace-title').textContent = 'Admin access is active.';
+      document.getElementById('workspace-copy').textContent = 'This account can manage operations. Member materials still require an approved member record, so the member workspace remains a placeholder until approval is linked.';
+      document.getElementById('placeholder-grid').innerHTML = `
+        <div class="placeholder-card"><span class="badge green">Admin</span><h3>Operations dashboard</h3><p>Review signups, payments, booking status, approvals, exports, and health.</p><div class="auth-actions"><a class="btn" href="/admin">Open admin dashboard</a></div></div>
+        <div class="placeholder-card"><span class="badge">Member status</span><h3>Not an approved member</h3><p>Admin role does not automatically create a member record. Approve an application to unlock member resources.</p></div>
+        <div class="placeholder-card"><span class="badge">Soon</span><h3>Agent notes</h3><p>Future diagnostics can explain why an account has admin access, member access, or both.</p></div>`;
+      document.getElementById('placeholder-grid').classList.remove('hidden');
+      document.getElementById('tasks').classList.add('hidden');
+      document.getElementById('accreditation').classList.add('hidden');
+      setStatus('Admin access is active. Member resources unlock after this account is linked to an approved member.');
+    }
+
+    async function renderApprovedMember() {
+      const contentRes = await authFetch('/api/member/content');
+      if (!contentRes.ok) {
+        if (contentRes.status === 403) { renderPendingMember(); return; }
+        renderAccessUnavailable(await readApiError(contentRes, 'Member resources could not be loaded.'));
+        return;
+      }
+      const content = await contentRes.json();
+      document.getElementById('workspace-badge').textContent = 'Active member';
+      document.getElementById('workspace-badge').classList.add('green');
+      document.getElementById('workspace-title').textContent = content.welcome;
+      document.getElementById('workspace-copy').textContent = 'Your member resources are active. The first placeholder resources are wired below while the full welcome area moves behind Clerk.';
+      document.getElementById('placeholder-grid').classList.add('hidden');
+      document.getElementById('tasks').innerHTML = content.tasks.map(task => `<a class="task" href="${task.href}"><h3>${task.title}</h3><p>${task.description}</p></a>`).join('');
+      document.getElementById('tasks').classList.remove('hidden');
+      document.getElementById('accreditation').classList.remove('hidden');
+      setStatus('Member workspace loaded.');
+      document.getElementById('save-accreditation').onclick = async () => {
+        const notes = document.getElementById('accreditation-notes').value;
+        const res = await authFetch('/api/member/accreditation', { method: 'POST', body: JSON.stringify({ notes }) });
+        setStatus(res.ok ? 'Accreditation profile saved.' : 'Profile could not be saved.', res.ok ? undefined : 'error');
+      };
+    }
+
+    async function main() {
+      const cachedAuth = readAuthSnapshot();
+      if (cachedAuth?.signedIn) {
+        showWorkspace(cachedAuth.email || 'Signed in');
+        renderCachedWorkspace(cachedAuth);
+      } else {
+        showAuth(null);
+      }
+      await afterInitialLoad();
+      const clerk = await loadClerk();
+      activeClerk = clerk;
+      if (!clerk.user && !localTestEmail) { showAuth(clerk); return; }
+      const email = clerk.user?.primaryEmailAddress?.emailAddress || localTestEmail || 'Signed in';
+      showWorkspace(email);
+      const authStateRes = await authFetch('/api/auth/me');
+      if (!authStateRes.ok) {
+        if (authStateRes.status === 403) { renderPendingMember(); return; }
+        renderAccessUnavailable(await readApiError(authStateRes, 'Member access could not be verified.'));
+        return;
+      }
+      const authState = await authStateRes.json();
+      writeAuthSnapshot(email, authState, clerk);
+      if (authState.admin && !authState.member?.approved) { renderAdminWorkspace(); return; }
+      if (!authState.member?.approved) { renderPendingMember(); return; }
+      await renderApprovedMember();
+    }
+
+    main().catch(err => {
+      showWorkspace('Member access');
+      renderPendingMember();
+      setStatus(err.message || 'Member access could not load.', 'error');
+    });
+  </script>
+</body>
+</html>

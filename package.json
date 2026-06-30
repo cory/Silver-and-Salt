@@ -1,8 +1,35 @@
 {
-  "name": "silver-and-salt",
+  "name": "silver-and-salt-capital",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
   "scripts": {
-    "dev": "python3 -m http.server 3000"
+    "dev": "python3 -m http.server ${PORT:-3000}",
+    "static": "python3 -m http.server ${PORT:-3000}",
+    "typecheck": "tsc --noEmit",
+    "test": "npm run typecheck && npm run test:unit",
+    "test:unit": "tsx --test test/*.test.ts",
+    "test:sql": "tsx --test test/sql-conformance.test.ts",
+    "migrate": "tsx scripts/migrate.ts",
+    "seed": "tsx scripts/seed.ts",
+    "smoke:local": "tsx scripts/smoke.ts http://localhost:3000",
+    "smoke:preview": "tsx scripts/smoke.ts $VERCEL_PREVIEW_URL",
+    "smoke:prod": "tsx scripts/smoke.ts https://silverandsaltcapital.com",
+    "test:e2e": "playwright test",
+    "dev:vercel": "node scripts/vercel-dev.mjs"
+  },
+  "dependencies": {
+    "@clerk/backend": "^2.13.0",
+    "@opentelemetry/api": "^1.9.0",
+    "pg": "^8.16.3"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.56.1",
+    "@types/node": "^24.10.1",
+    "@types/pg": "^8.15.6",
+    "@vercel/node": "^5.5.11",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3",
+    "vercel": "^54.18.1"
   }
 }
