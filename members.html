@@ -206,20 +206,27 @@
       setStatus(message || 'Member access could not be verified.', 'error');
     }
 
-    function renderAdminWorkspace() {
+    async function renderAdminWorkspace() {
       const badge = document.getElementById('workspace-badge');
       badge.textContent = 'Admin';
       badge.classList.add('green');
       document.getElementById('workspace-title').textContent = 'Admin access is active.';
-      document.getElementById('workspace-copy').textContent = 'This account can manage operations. Member materials still require an approved member record, so the member workspace remains a placeholder until approval is linked.';
+      document.getElementById('workspace-copy').textContent = 'This account can manage operations and preview member resources. A member record is still required for member-only profile actions.';
       document.getElementById('placeholder-grid').innerHTML = `
         <div class="placeholder-card"><span class="badge green">Admin</span><h3>Operations dashboard</h3><p>Review signups, payments, booking status, approvals, exports, and health.</p><div class="auth-actions"><a class="btn" href="/admin">Open admin dashboard</a></div></div>
-        <div class="placeholder-card"><span class="badge">Member status</span><h3>Not an approved member</h3><p>Admin role does not automatically create a member record. Approve an application to unlock member resources.</p></div>
-        <div class="placeholder-card"><span class="badge">Soon</span><h3>Agent notes</h3><p>Future diagnostics can explain why an account has admin access, member access, or both.</p></div>`;
+        <div class="placeholder-card"><span class="badge">Member status</span><h3>Admin preview</h3><p>Member resources are visible for review. Accreditation submissions stay limited to approved member records.</p></div>
+        <div class="placeholder-card"><span class="badge">Access model</span><h3>Separate roles</h3><p>Admin access comes from Clerk metadata. Member access comes from approved application records.</p></div>`;
       document.getElementById('placeholder-grid').classList.remove('hidden');
-      document.getElementById('tasks').classList.add('hidden');
       document.getElementById('accreditation').classList.add('hidden');
-      setStatus('Admin access is active. Member resources unlock after this account is linked to an approved member.');
+      const contentRes = await authFetch('/api/member/content');
+      if (contentRes.ok) {
+        const content = await contentRes.json();
+        document.getElementById('tasks').innerHTML = content.tasks.map(task => `<a class="task" href="${task.href}"><h3>${task.title}</h3><p>${task.description}</p></a>`).join('');
+        document.getElementById('tasks').classList.remove('hidden');
+      } else {
+        document.getElementById('tasks').classList.add('hidden');
+      }
+      setStatus('Admin access is active. Member resources are available for preview.');
     }
 
     async function renderApprovedMember() {
@@ -268,7 +275,7 @@
       }
       const authState = await authStateRes.json();
       writeAuthSnapshot(email, authState, clerk);
-      if (authState.admin && !authState.member?.approved) { renderAdminWorkspace(); return; }
+      if (authState.admin && !authState.member?.approved) { await renderAdminWorkspace(); return; }
       if (!authState.member?.approved) { renderPendingMember(); return; }
       await renderApprovedMember();
     }
