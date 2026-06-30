@@ -1,6 +1,6 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 import { apiHandler, sendJson } from "../server/http.js";
-import { databaseUrl, optionalEnv } from "../server/env.js";
+import { databaseUrl, databaseUrlSummary, optionalEnv } from "../server/env.js";
 import { query } from "../server/db.js";
 
 function errorCode(error: unknown): string | null {
@@ -50,6 +50,7 @@ export default apiHandler("health", async (_req: VercelRequest, res: VercelRespo
     service: "silver-salt-vercel",
     database,
     databaseError,
+    databaseConnection: databaseUrlSummary(),
     databaseHint: supabaseApiOnly ? "SUPABASE_URL is configured, but a Postgres connection string is required as DATABASE_URL or POSTGRES_URL." : null,
     clerk: optionalEnv("CLERK_SECRET_KEY") ? "configured" : "missing",
     stripe: optionalEnv("STRIPE_SECRET_KEY") ? "configured" : "missing",

@@ -1,6 +1,6 @@
 import { describe, it, afterEach } from "node:test";
 import assert from "node:assert/strict";
-import { databaseUrl, publicConfig } from "../src/server/env.js";
+import { databaseUrl, publicConfig, summarizeDatabaseUrl } from "../src/server/env.js";
 import { poolConfig } from "../src/server/db.js";
 
 afterEach(() => {
@@ -33,5 +33,14 @@ describe("public contracts", () => {
     assert.equal(poolConfig("postgres://user:pass@localhost:5432/app").ssl, undefined);
     assert.deepEqual(poolConfig("postgres://user:pass@aws-0-us-west-1.pooler.supabase.com:6543/postgres").ssl, { rejectUnauthorized: false });
     assert.equal(poolConfig("postgres://user:pass@aws-0-us-west-1.pooler.supabase.com:6543/postgres?sslmode=require").ssl, undefined);
+  });
+
+  it("summarizes database URLs without exposing credentials", () => {
+    const summary = summarizeDatabaseUrl("DATABASE_URL", "postgres://postgres.ref:secret-value@aws-0-us-west-1.pooler.supabase.com:6543/postgres?sslmode=require");
+    assert.equal(summary.parseOk, true);
+    assert.equal(summary.host, "aws-0-us-west-1.pooler.supabase.com");
+    assert.equal(summary.usernameShape, "pooler-style");
+    assert.equal(summary.passwordStatus, "present");
+    assert.equal(JSON.stringify(summary).includes("secret-value"), false);
   });
 });
