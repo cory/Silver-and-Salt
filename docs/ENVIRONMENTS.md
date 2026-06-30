@@ -35,7 +35,7 @@ Production and preview should have separate databases. A preview deployment must
 
 Core:
 
-- `DATABASE_URL`: Postgres connection string for that target. No Postgres functions, triggers, RLS policies, or DB-side workflow logic.
+- `DATABASE_URL`: Postgres connection string for that target. `POSTGRES_URL` is accepted as an alias when a Vercel/database integration creates it. `SUPABASE_URL` is only the Supabase API endpoint and is not enough for this SQL-backed app. No Postgres functions, triggers, RLS policies, or DB-side workflow logic.
 - `APP_BASE_URL`: Canonical base URL. Current Vercel production is `https://silver-and-salt.vercel.app`; local is `http://localhost:3000`. Preview can omit this and rely on Vercel system URLs unless a fixed preview callback is required. Do not move the custom domain without an explicit migration task.
 - `OWNER_EMAIL`: Owner/admin alert destination.
 - `EMAIL_FROM`: Sender identity for Resend emails.
@@ -113,6 +113,8 @@ Each target needs its own webhook endpoint and signing secret:
 Use Stripe-supported test cards and test payment methods only in local/preview. Never test live payment behavior with real card details.
 
 ## Vercel CLI Patterns
+
+Supabase integrations may add browser/API variables such as `SUPABASE_URL`. This project needs a Postgres connection string exposed as `DATABASE_URL` or `POSTGRES_URL`. Use the Supabase pooled Postgres connection string for Vercel functions and keep direct database URLs for local migration/admin use.
 
 List configured variable names without values:
 

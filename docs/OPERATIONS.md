@@ -30,7 +30,7 @@ See `docs/ENVIRONMENTS.md` for the full local, preview, and production split. In
 
 ## Required Environment Variables
 
-See `.env.example` and `docs/ENVIRONMENTS.md`. Production requires at minimum `DATABASE_URL`, `APP_BASE_URL`, Clerk live keys, Stripe live keys, `STRIPE_WEBHOOK_SECRET`, live `SILVER_SALT_STRIPE_PRICE_ID`, `CRON_SECRET`, and Resend email settings. Preview must use test/sandbox provider values and a non-production database.
+See `.env.example` and `docs/ENVIRONMENTS.md`. Production requires at minimum `DATABASE_URL` or `POSTGRES_URL`, `APP_BASE_URL`, Clerk live keys, Stripe live keys, `STRIPE_WEBHOOK_SECRET`, live `SILVER_SALT_STRIPE_PRICE_ID`, `CRON_SECRET`, and Resend email settings. `SUPABASE_URL` alone is not a database connection string. Preview must use test/sandbox provider values and a non-production database.
 
 ## Vercel Cron Cadence
 

@@ -24,6 +24,10 @@ export function appBaseUrl(): string {
   return "http://localhost:3000";
 }
 
+export function databaseUrl(): string | undefined {
+  return optionalEnv("DATABASE_URL") ?? optionalEnv("POSTGRES_URL");
+}
+
 export const DEFAULT_GROUP_ID = "silver-salt-capital";
 
 function localRuntimeEnabled(): boolean {

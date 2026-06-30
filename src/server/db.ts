@@ -1,5 +1,5 @@
 import pg from "pg";
-import { requiredEnv } from "./env.js";
+import { databaseUrl } from "./env.js";
 import { traced } from "./tracing.js";
 
 const { Pool } = pg;
@@ -7,7 +7,9 @@ let pool: pg.Pool | null = null;
 
 export function getPool(): pg.Pool {
   if (!pool) {
-    pool = new Pool({ connectionString: requiredEnv("DATABASE_URL"), max: 5 });
+    const connectionString = databaseUrl();
+    if (!connectionString) throw new Error("Missing required environment variable: DATABASE_URL or POSTGRES_URL");
+    pool = new Pool({ connectionString, max: 5 });
   }
   return pool;
 }
