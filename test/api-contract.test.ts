@@ -1,6 +1,7 @@
 import { describe, it, afterEach } from "node:test";
 import assert from "node:assert/strict";
 import { databaseUrl, publicConfig } from "../src/server/env.js";
+import { poolConfig } from "../src/server/db.js";
 
 afterEach(() => {
   delete process.env.DATABASE_URL;
@@ -26,5 +27,11 @@ describe("public contracts", () => {
 
     process.env.DATABASE_URL = "postgres://postgres:password@pooler.example.supabase.co:6543/postgres";
     assert.equal(databaseUrl(), process.env.DATABASE_URL);
+  });
+
+  it("enables SSL for remote Postgres URLs without changing local URLs", () => {
+    assert.equal(poolConfig("postgres://user:pass@localhost:5432/app").ssl, undefined);
+    assert.deepEqual(poolConfig("postgres://user:pass@aws-0-us-west-1.pooler.supabase.com:6543/postgres").ssl, { rejectUnauthorized: false });
+    assert.equal(poolConfig("postgres://user:pass@aws-0-us-west-1.pooler.supabase.com:6543/postgres?sslmode=require").ssl, undefined);
   });
 });

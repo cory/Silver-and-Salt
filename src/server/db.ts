@@ -5,11 +5,30 @@ import { traced } from "./tracing.js";
 const { Pool } = pg;
 let pool: pg.Pool | null = null;
 
+function shouldForceSsl(connectionString: string): boolean {
+  try {
+    const url = new URL(connectionString);
+    const host = url.hostname.toLowerCase();
+    const localHosts = new Set(["localhost", "127.0.0.1", "::1"]);
+    return !localHosts.has(host) && !url.searchParams.has("sslmode");
+  } catch {
+    return false;
+  }
+}
+
+export function poolConfig(connectionString: string): pg.PoolConfig {
+  const config: pg.PoolConfig = { connectionString, max: 5 };
+  if (shouldForceSsl(connectionString)) {
+    config.ssl = { rejectUnauthorized: false };
+  }
+  return config;
+}
+
 export function getPool(): pg.Pool {
   if (!pool) {
     const connectionString = databaseUrl();
     if (!connectionString) throw new Error("Missing required environment variable: DATABASE_URL or POSTGRES_URL");
-    pool = new Pool({ connectionString, max: 5 });
+    pool = new Pool(poolConfig(connectionString));
   }
   return pool;
 }
